@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ── Design tokens ─────────────────────────────────────── */
+:root {
+  --color-bg:            #e8d5e0;
+  --color-card:          #fdf5f8;
+  --color-card-inner:    #f9ecf1;
+  --color-border:        #ebd4de;
+  --color-text-primary:  #2d2235;
+  --color-text-secondary:#6b5a6e;
+  --color-text-muted:    #b8a4b8;
+  --color-accent:        #c47a8e;
+  --color-accent-hover:  #b36a7e;
+  --color-accent-tint:   #f5e6ec;
+}
+
+/* ── Base resets ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(160deg, #d4b8cb 0%, #e8d5e0 30%, #dcc5d8 60%, #c9adc4 100%);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Confetti burst animation ─────────────────────────── */
+@keyframes confetti-burst {
+  0% { transform: translate(-50%, -50%) translate(0, 0); opacity: 1; }
+  35% { transform: translate(-50%, -50%) translate(var(--burst-x), var(--burst-y)); opacity: 1; }
+  100% { transform: translate(-50%, -50%) translate(var(--burst-x), var(--fall-y)); opacity: 0; }
+}
+
+/* ── Scrollbar styling ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Textarea focus ─────────────────────────────────────── */
+textarea:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
