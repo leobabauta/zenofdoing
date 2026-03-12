@@ -190,8 +190,8 @@ export function PracticeStep({ day, title, hasAudio, onBack, onContinue }: Pract
   const tickInnerMinor = tickRadius;
   const needleLength = innerRadius + 14;
 
-  const accentDark = '#c47a8e';
-  const accentLight = '#f0c4d0';
+  const accentDark = '#8b6aae';
+  const accentLight = '#c9b8e0';
 
   const ticks = [];
   for (let i = 0; i < 60; i++) {

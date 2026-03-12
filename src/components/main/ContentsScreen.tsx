@@ -8,6 +8,12 @@ interface ContentsScreenProps {
   onSelectStep: (stepId: string) => void;
 }
 
+function unlockLabel(dayNum: number, availableDays: number): string {
+  const daysAway = dayNum - availableDays;
+  if (daysAway === 1) return 'Unlocks tomorrow';
+  return `Unlocks in ${daysAway} days`;
+}
+
 export function ContentsScreen({ completedSteps, availableDays, currentStepId, onSelectStep }: ContentsScreenProps) {
   return (
     <div className="px-8 py-10 flex-1 overflow-y-auto">
@@ -60,7 +66,7 @@ export function ContentsScreen({ completedSteps, availableDays, currentStepId, o
                     </p>
                   )}
                   {!available && (
-                    <p className="text-xs text-[var(--color-text-muted)]">Unlocks later</p>
+                    <p className="text-xs text-[var(--color-text-muted)]">{unlockLabel(day.day, availableDays)}</p>
                   )}
                 </div>
               </div>

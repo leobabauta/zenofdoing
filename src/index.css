@@ -2,16 +2,16 @@
 
 /* ── Design tokens ─────────────────────────────────────── */
 :root {
-  --color-bg:            #e8d5e0;
-  --color-card:          #fdf5f8;
-  --color-card-inner:    #f9ecf1;
-  --color-border:        #ebd4de;
-  --color-text-primary:  #2d2235;
-  --color-text-secondary:#6b5a6e;
-  --color-text-muted:    #b8a4b8;
-  --color-accent:        #c47a8e;
-  --color-accent-hover:  #b36a7e;
-  --color-accent-tint:   #f5e6ec;
+  --color-bg:            #ddd5e8;
+  --color-card:          #f7f5fd;
+  --color-card-inner:    #f0ecf9;
+  --color-border:        #d8d0e8;
+  --color-text-primary:  #24223a;
+  --color-text-secondary:#5e567a;
+  --color-text-muted:    #a89bbe;
+  --color-accent:        #8b6aae;
+  --color-accent-hover:  #7a5a9e;
+  --color-accent-tint:   #ede6f5;
 }
 
 /* ── Base resets ────────────────────────────────────────── */
@@ -31,7 +31,7 @@ body,
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(160deg, #d4b8cb 0%, #e8d5e0 30%, #dcc5d8 60%, #c9adc4 100%);
+  background: linear-gradient(160deg, #c4b8d4 0%, #d8d0e8 30%, #cdc5dc 60%, #b8adc9 100%);
   background-attachment: fixed;
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
