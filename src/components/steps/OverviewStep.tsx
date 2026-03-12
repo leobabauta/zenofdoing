@@ -1,16 +1,7 @@
 import { BackButton } from '../../App';
 import { day1Overview } from '../../data/dayContent';
 import { LotusIllustration } from '../ui/Illustrations';
-
-/** Renders a string with **bold** markers into React nodes. */
-function renderBold(text: string): React.ReactNode {
-  const parts = text.split(/(\*\*.*?\*\*)/g);
-  return parts.map((part, i) =>
-    part.startsWith('**') && part.endsWith('**')
-      ? <strong key={i} className="font-semibold text-[var(--color-text-primary)]">{part.slice(2, -2)}</strong>
-      : part
-  );
-}
+import { renderRichText } from '../../lib/renderRichText';
 
 interface OverviewStepProps {
   onBack: () => void;
@@ -37,22 +28,7 @@ export function OverviewStep({ onBack, onContinue }: OverviewStepProps) {
       <div className="h-px bg-[var(--color-border)] my-7" />
 
       <div className="space-y-5">
-        {content.paragraphs.map((item, i) =>
-          typeof item === 'string' ? (
-            <p key={i} className="text-[15px] leading-relaxed text-[var(--color-text-secondary)]">
-              {renderBold(item)}
-            </p>
-          ) : (
-            <ul key={i} className="space-y-3 pl-1">
-              {item.items.map((li, j) => (
-                <li key={j} className="flex gap-3 text-[15px] leading-relaxed text-[var(--color-text-secondary)]">
-                  <span className="text-[var(--color-accent)] mt-0.5 flex-shrink-0">•</span>
-                  <span>{renderBold(li)}</span>
-                </li>
-              ))}
-            </ul>
-          )
-        )}
+        {renderRichText(content.paragraphs)}
       </div>
 
       <p className="mt-8 text-lg font-semibold text-[var(--color-text-primary)]">

@@ -1,6 +1,7 @@
 import { BackButton } from '../../App';
 import { CompletionCheckbox } from '../ui/CompletionCheckbox';
 import { getLessonContent } from '../../data/dayContent';
+import { renderRichText } from '../../lib/renderRichText';
 
 interface LessonStepProps {
   day: number;
@@ -25,11 +26,7 @@ export function LessonStep({ day, onBack, onComplete, onContinue }: LessonStepPr
       <div className="h-px bg-[var(--color-border)] my-7" />
 
       <div className="space-y-5">
-        {content.paragraphs.map((p, i) => (
-          <p key={i} className="text-[15px] leading-relaxed text-[var(--color-text-secondary)]">
-            {p}
-          </p>
-        ))}
+        {renderRichText(content.paragraphs)}
       </div>
 
       <div className="mt-10">

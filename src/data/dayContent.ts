@@ -1,10 +1,12 @@
 // Content for each day's lessons, instructions, reflections, and encouragements.
 // Structure is kept as simple strings/arrays so content can be updated independently of components.
 
+export type ContentBlock = string | { type: 'list'; items: string[] };
+
 export interface LessonContent {
   subtitle: string;
   title: string;
-  paragraphs: string[];
+  paragraphs: ContentBlock[];
 }
 
 export interface PracticeInstructionsContent {
@@ -61,8 +63,25 @@ export const day1Lesson: LessonContent = {
   subtitle: 'Day 1 · Lesson',
   title: 'What Gets in the Way',
   paragraphs: [
-    'Placeholder: This lesson will explore the common patterns that get in the way of doing things with ease — resistance, overthinking, narratives of difficulty, and rushing.',
-    'Content coming soon.',
+    'Before we can practice ease, we need to understand why it feels so tough.',
+    "Here's the thing: ease is actually a natural state for humans, if we're not in danger or upset. It's not something you have to manufacture.",
+    "It's helpful to think of it like water moving through a hose — the flow is already there. But when something kinks the hose, the flow stops. The water doesn't disappear; it just can't get through.",
+    'The same is true for you. When ease feels absent, something is blocking its flow.',
+    'So what kinks the hose? A few of the most common culprits:',
+    {
+      type: 'list',
+      items: [
+        '**Resistance** — a subtle (or not so subtle) refusal to be doing what you\'ve set yourself to doing, usually with a deeper layer of some fear.',
+        '**Rushing** — moving quickly through the day out of anxiety of not getting it all done. Feeling overwhelmed and overloaded, not enough time for it all, feeling behind.',
+        '**Expectation** — an ideal of how things *should* go, that we put on ourselves most of the time.',
+        '**Self-judgment or guilt** — an inner critic, evaluating your every move, stemming from those expectations of what you "should" be doing, and then judgment and guilt if you don\'t live up to those expectations.',
+        '**Distraction** — a tendency to feel scattered, shifting attention constantly, when it feels uncomfortable to stay in one place.',
+        '**Tension** — anxiety that leads to physical tightening in the body that we carry without noticing: a clenched jaw, tightened chest, hunched shoulders.',
+      ],
+    },
+    "None of these are bad. They're just learned patterns that are meant to protect us … but that get in the way of our ease and flow. We're just noticing what's there for us.",
+    'Awareness is what makes everything else possible.',
+    "So let's start Day 1 with a practice of reflecting on our blockers.",
   ],
 };
 
