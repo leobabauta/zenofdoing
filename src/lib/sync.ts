@@ -1,37 +1,41 @@
 import { supabase } from './supabase';
-import type { JournalEntry, Screen } from '../App';
+import type { JournalEntry } from '../App';
 
 export async function loadProgress(userId: string): Promise<{
-  completedScreens: Screen[];
-  currentLesson: Screen;
+  completedSteps: string[];
+  currentStep: string;
+  courseStartedAt: string | null;
 } | null> {
   if (!supabase) return null;
 
   const { data } = await supabase
     .from('user_progress')
-    .select('completed_screens, current_lesson')
+    .select('completed_screens, current_lesson, course_started_at')
     .eq('user_id', userId)
     .single();
 
   if (!data) return null;
 
   return {
-    completedScreens: (data.completed_screens || []) as Screen[],
-    currentLesson: (data.current_lesson || 'intro') as Screen,
+    completedSteps: (data.completed_screens || []) as string[],
+    currentStep: (data.current_lesson || 'day1.overview') as string,
+    courseStartedAt: data.course_started_at || null,
   };
 }
 
 export async function saveProgress(
   userId: string,
-  completedScreens: Set<Screen>,
-  currentLesson: Screen
+  completedSteps: Set<string>,
+  currentStep: string,
+  courseStartedAt: string
 ): Promise<void> {
   if (!supabase) return;
 
   await supabase.from('user_progress').upsert({
     user_id: userId,
-    completed_screens: Array.from(completedScreens),
-    current_lesson: currentLesson,
+    completed_screens: Array.from(completedSteps),
+    current_lesson: currentStep,
+    course_started_at: courseStartedAt,
     updated_at: new Date().toISOString(),
   });
 }
