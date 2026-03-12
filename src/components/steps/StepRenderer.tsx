@@ -73,6 +73,7 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
       return (
         <ReflectionStep
           day={day}
+          title={stepDef.label}
           onBack={onBack}
           onSave={(entry) => { onComplete(); onSaveJournal(entry); }}
           onContinue={onContinue}

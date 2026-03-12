@@ -28,9 +28,7 @@ export const COURSE: DayDef[] = [
     steps: [
       { id: 'day1.overview', type: 'overview', label: 'Overview: The Zen of Doing' },
       { id: 'day1.lesson', type: 'lesson', label: 'What Gets in the Way' },
-      { id: 'day1.practice-instructions', type: 'practice-instructions', label: 'Practice Instructions' },
-      { id: 'day1.practice', type: 'practice', label: 'Reflect on Your Blockers' },
-      { id: 'day1.reflection', type: 'reflection', label: 'Reflection' },
+      { id: 'day1.practice', type: 'reflection', label: 'Reflect on Your Blockers' },
       { id: 'day1.encouragement', type: 'encouragement', label: 'Practice Every Day' },
     ],
   },

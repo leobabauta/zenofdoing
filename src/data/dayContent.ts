@@ -17,6 +17,9 @@ export interface PracticeInstructionsContent {
 }
 
 export interface ReflectionContent {
+  intro?: string;
+  blockersList?: string[];
+  blockersNote?: string;
   prompts: string[];
 }
 
@@ -85,23 +88,18 @@ export const day1Lesson: LessonContent = {
   ],
 };
 
-export const day1PracticeInstructions: PracticeInstructionsContent = {
-  title: 'Reflect on Your Blockers',
-  intro: 'For today\'s practice, you\'ll spend a few minutes reflecting on what typically gets in the way when you sit down to do something.',
-  steps: [
-    'Find a quiet place where you can think without distraction.',
-    'Think of a recent task that felt hard, stressful, or that you avoided.',
-    'Notice what feelings, thoughts, or patterns came up around that task.',
-    'Write down what you notice — we\'ll use this in the reflection.',
-  ],
-  closingNote: 'When you\'re ready, start the practice timer below.',
-};
-
 export const day1Reflection: ReflectionContent = {
+  intro: "Today, we're going to do a bit of a reflection. See if you can recognize your main blockers out of this list … but also, any others you can think of:",
+  blockersList: [
+    'Resistance', 'Rushing', 'Expectation', 'Self-judgment', 'Distraction',
+    'Tension', 'Overthinking', 'Fear of failure', 'People-pleasing',
+    'Perfectionism', 'Comparison', 'Resentment/blame', 'Overwhelm', 'Need for control',
+  ],
+  blockersNote: "By the way, many of these overlap each other, so it's OK to choose more than one if you're not sure which fit best.",
   prompts: [
-    'What blockers did you notice? What patterns come up when you sit down to do something?',
-    'Were there any surprises in what you noticed? Anything you hadn\'t been aware of before?',
-    'What would it look like to approach those blockers with a little more ease?',
+    "Which on the list above are your biggest blockers? Feel free to list ones that aren't here as well.",
+    'What activities do you notice them coming up, blocking a sense of ease and flow as you act?',
+    'What do they protect you from? What do they make impossible?',
   ],
 };
 
@@ -282,7 +280,6 @@ export function getLessonContent(day: number): LessonContent {
 
 export function getPracticeInstructionsContent(day: number): PracticeInstructionsContent {
   const map: Record<number, PracticeInstructionsContent> = {
-    1: day1PracticeInstructions,
     2: day2PracticeInstructions,
     3: day3PracticeInstructions,
     4: day4PracticeInstructions,

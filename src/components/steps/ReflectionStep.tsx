@@ -5,12 +5,13 @@ import type { JournalEntry } from '../../App';
 
 interface ReflectionStepProps {
   day: number;
+  title?: string;
   onBack: () => void;
   onSave: (entry: JournalEntry) => void;
   onContinue: () => void;
 }
 
-export function ReflectionStep({ day, onBack, onSave, onContinue }: ReflectionStepProps) {
+export function ReflectionStep({ day, title, onBack, onSave, onContinue }: ReflectionStepProps) {
   const content = getReflectionContent(day);
   const prompts = content.prompts;
   const [responses, setResponses] = useState(() => prompts.map(() => ''));
@@ -92,17 +93,45 @@ export function ReflectionStep({ day, onBack, onSave, onContinue }: ReflectionSt
     <div className="px-10 py-10">
       <BackButton onClick={onBack} />
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
-        Day {day} · Reflect
+        Day {day} · Practice
       </p>
       <h1 className="text-2xl font-bold text-[var(--color-text-primary)] tracking-tight leading-tight">
-        How Was Your Practice?
+        {title || 'How Was Your Practice?'}
       </h1>
       <div className="h-px bg-[var(--color-border)] my-7" />
 
-      <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] mb-8">
-        Take a few minutes to reflect on what you just experienced. There are no right
-        answers — just notice what's true for you.
-      </p>
+      {content.intro && (
+        <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] mb-6">
+          {content.intro}
+        </p>
+      )}
+
+      {content.blockersList && (
+        <div className="mb-6">
+          <div className="flex flex-wrap gap-2">
+            {content.blockersList.map((blocker, i) => (
+              <span
+                key={i}
+                className="px-3 py-1.5 rounded-full text-sm bg-[var(--color-card-inner)] border border-[var(--color-border)] text-[var(--color-text-secondary)]"
+              >
+                {blocker}
+              </span>
+            ))}
+          </div>
+          {content.blockersNote && (
+            <p className="mt-4 text-sm text-[var(--color-text-muted)]">
+              {content.blockersNote}
+            </p>
+          )}
+        </div>
+      )}
+
+      {!content.intro && (
+        <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] mb-8">
+          Take a few minutes to reflect on what you just experienced. There are no right
+          answers — just notice what's true for you.
+        </p>
+      )}
 
       <div className="space-y-6">
         {prompts.map((prompt, i) => (
