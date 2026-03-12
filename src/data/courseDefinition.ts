@@ -116,6 +116,17 @@ export function getNextStep(stepId: string): StepDef | null {
   return null;
 }
 
+export function getPreviousStep(stepId: string): StepDef | null {
+  const { day } = parseStepId(stepId);
+  const dayDef = getDayDef(day);
+  if (!dayDef) return null;
+  const idx = dayDef.steps.findIndex((s) => s.id === stepId);
+  if (idx > 0) {
+    return dayDef.steps[idx - 1];
+  }
+  return null;
+}
+
 export function getAllStepIds(): string[] {
   return COURSE.flatMap((d) => d.steps.map((s) => s.id));
 }

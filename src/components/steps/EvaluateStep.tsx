@@ -5,11 +5,12 @@ import type { JournalEntry } from '../../App';
 
 interface EvaluateStepProps {
   onBack: () => void;
+  backLabel?: string;
   onSave: (entry: JournalEntry) => void;
   onContinue: () => void;
 }
 
-export function EvaluateStep({ onBack, onSave, onContinue }: EvaluateStepProps) {
+export function EvaluateStep({ onBack, backLabel, onSave, onContinue }: EvaluateStepProps) {
   const content = day6Evaluate;
   const [responses, setResponses] = useState(() => content.prompts.map(() => ''));
   const [saved, setSaved] = useState(false);
@@ -39,7 +40,7 @@ export function EvaluateStep({ onBack, onSave, onContinue }: EvaluateStepProps) 
   if (saved) {
     return (
       <div className="px-10 py-10">
-        <BackButton onClick={onBack} />
+        <BackButton onClick={onBack} label={backLabel} />
         <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
           Day 6 · Evaluation Saved
         </p>
@@ -86,7 +87,7 @@ export function EvaluateStep({ onBack, onSave, onContinue }: EvaluateStepProps) 
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
         Day 6 · Evaluate
       </p>

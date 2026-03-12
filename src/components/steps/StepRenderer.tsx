@@ -1,4 +1,4 @@
-import { parseStepId, getStepDef } from '../../data/courseDefinition';
+import { parseStepId, getStepDef, getPreviousStep } from '../../data/courseDefinition';
 import { OverviewStep } from './OverviewStep';
 import { LessonStep } from './LessonStep';
 import { PracticeInstructionsStep } from './PracticeInstructionsStep';
@@ -12,14 +12,20 @@ import type { JournalEntry } from '../../App';
 interface StepRendererProps {
   stepId: string;
   onBack: () => void;
+  onHome: () => void;
   onComplete: () => void;
   onContinue: () => void;
   onSaveJournal: (entry: JournalEntry) => void;
 }
 
-export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJournal }: StepRendererProps) {
+export function StepRenderer({ stepId, onBack, onHome, onComplete, onContinue, onSaveJournal }: StepRendererProps) {
   const { day } = parseStepId(stepId);
   const stepDef = getStepDef(stepId);
+  const prevStep = getPreviousStep(stepId);
+
+  // First step in a day goes back to home; otherwise go to previous step
+  const handleBack = prevStep ? onBack : onHome;
+  const backLabel = prevStep ? prevStep.label : 'Home';
 
   if (!stepDef) {
     return (
@@ -33,8 +39,10 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
     case 'overview':
       return (
         <OverviewStep
-          onBack={onBack}
-          onContinue={() => { onComplete(); onContinue(); }}
+          onBack={handleBack}
+          backLabel={backLabel}
+          onComplete={onComplete}
+          onContinue={onContinue}
         />
       );
 
@@ -42,7 +50,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
       return (
         <LessonStep
           day={day}
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onComplete={onComplete}
           onContinue={onContinue}
         />
@@ -52,7 +61,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
       return (
         <PracticeInstructionsStep
           day={day}
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onComplete={onComplete}
           onContinue={onContinue}
         />
@@ -64,7 +74,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
           day={day}
           title={stepDef.label}
           hasAudio={stepDef.hasAudio}
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onContinue={() => { onComplete(); onContinue(); }}
         />
       );
@@ -74,7 +85,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
         <ReflectionStep
           day={day}
           title={stepDef.label}
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onSave={(entry) => { onComplete(); onSaveJournal(entry); }}
           onContinue={onContinue}
         />
@@ -84,7 +96,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
       return (
         <EncouragementStep
           day={day}
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onContinue={() => { onComplete(); onContinue(); }}
         />
       );
@@ -92,7 +105,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
     case 'evaluate':
       return (
         <EvaluateStep
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onSave={(entry) => { onComplete(); onSaveJournal(entry); }}
           onContinue={onContinue}
         />
@@ -101,7 +115,8 @@ export function StepRenderer({ stepId, onBack, onComplete, onContinue, onSaveJou
     case 'final-encouragement':
       return (
         <FinalEncouragementStep
-          onBack={onBack}
+          onBack={handleBack}
+          backLabel={backLabel}
           onContinue={() => { onComplete(); onContinue(); }}
         />
       );

@@ -2,18 +2,21 @@ import { BackButton } from '../../App';
 import { day1Overview } from '../../data/dayContent';
 import { LotusIllustration } from '../ui/Illustrations';
 import { renderRichText } from '../../lib/renderRichText';
+import { CompletionCheckbox } from '../ui/CompletionCheckbox';
 
 interface OverviewStepProps {
   onBack: () => void;
+  backLabel?: string;
+  onComplete: () => void;
   onContinue: () => void;
 }
 
-export function OverviewStep({ onBack, onContinue }: OverviewStepProps) {
+export function OverviewStep({ onBack, backLabel, onComplete, onContinue }: OverviewStepProps) {
   const content = day1Overview;
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
 
       <div className="flex justify-center mb-6">
         <LotusIllustration className="w-48" />
@@ -36,15 +39,7 @@ export function OverviewStep({ onBack, onContinue }: OverviewStepProps) {
       </p>
 
       <div className="mt-8 pb-2">
-        <button
-          onClick={onContinue}
-          className="flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
-        >
-          Continue
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+        <CompletionCheckbox completed={false} onComplete={onComplete} continueLabel="Continue" onContinue={onContinue} />
       </div>
     </div>
   );

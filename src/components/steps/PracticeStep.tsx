@@ -59,10 +59,11 @@ interface PracticeStepProps {
   title: string;
   hasAudio?: boolean;
   onBack: () => void;
+  backLabel?: string;
   onContinue: () => void;
 }
 
-export function PracticeStep({ day, title, hasAudio, onBack, onContinue }: PracticeStepProps) {
+export function PracticeStep({ day, title, hasAudio, onBack, backLabel, onContinue }: PracticeStepProps) {
   const [totalSeconds, setTotalSeconds] = useState(1500);
   const [remainingSeconds, setRemainingSeconds] = useState(1500);
   const [status, setStatus] = useState<TimerStatus>('idle');
@@ -231,7 +232,7 @@ export function PracticeStep({ day, title, hasAudio, onBack, onContinue }: Pract
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
         Day {day} · Practice
       </p>

@@ -14,13 +14,14 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
   const progress = getDayProgress(currentDay, completedSteps);
   const nextStep = getFirstIncompleteStep(currentDay, completedSteps);
   const dayComplete = isDayComplete(currentDay, completedSteps);
+  const isNewUser = completedSteps.size === 0;
 
   // Find next locked day for teaser
   const nextLockedDay = availableDays < 6 ? availableDays + 1 : null;
 
   return (
     <div className="px-8 py-10 flex-1 overflow-y-auto">
-      <p className="text-sm text-[var(--color-text-muted)] mb-1">Welcome back</p>
+      <p className="text-sm text-[var(--color-text-muted)] mb-1">{isNewUser ? 'Welcome!' : 'Welcome back'}</p>
       <h1 className="text-2xl font-bold text-[var(--color-text-primary)] tracking-tight">
         Zen of Doing
       </h1>
@@ -59,7 +60,7 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
             </div>
 
             <p className="text-sm text-[var(--color-text-secondary)] mt-2">
-              {dayComplete ? 'Completed' : nextStep ? 'Continue where you left off' : 'Start today\'s practice'}
+              {dayComplete ? 'Completed' : isNewUser ? 'Get started' : nextStep ? 'Continue where you left off' : 'Start today\'s practice'}
             </p>
           </div>
         </button>

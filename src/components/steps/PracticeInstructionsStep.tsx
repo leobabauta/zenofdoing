@@ -5,16 +5,17 @@ import { getPracticeInstructionsContent } from '../../data/dayContent';
 interface PracticeInstructionsStepProps {
   day: number;
   onBack: () => void;
+  backLabel?: string;
   onComplete: () => void;
   onContinue: () => void;
 }
 
-export function PracticeInstructionsStep({ day, onBack, onComplete, onContinue }: PracticeInstructionsStepProps) {
+export function PracticeInstructionsStep({ day, onBack, backLabel, onComplete, onContinue }: PracticeInstructionsStepProps) {
   const content = getPracticeInstructionsContent(day);
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
 
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
         Day {day} · Practice Instructions

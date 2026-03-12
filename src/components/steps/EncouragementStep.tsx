@@ -5,15 +5,16 @@ import { MountainIllustration } from '../ui/Illustrations';
 interface EncouragementStepProps {
   day: number;
   onBack: () => void;
+  backLabel?: string;
   onContinue: () => void;
 }
 
-export function EncouragementStep({ day, onBack, onContinue }: EncouragementStepProps) {
+export function EncouragementStep({ day, onBack, backLabel, onContinue }: EncouragementStepProps) {
   const content = getEncouragementContent(day);
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
 
       <div className="flex justify-center mb-6">
         <MountainIllustration className="w-48" />

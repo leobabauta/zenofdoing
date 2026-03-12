@@ -6,16 +6,17 @@ import { renderRichText } from '../../lib/renderRichText';
 interface LessonStepProps {
   day: number;
   onBack: () => void;
+  backLabel?: string;
   onComplete: () => void;
   onContinue: () => void;
 }
 
-export function LessonStep({ day, onBack, onComplete, onContinue }: LessonStepProps) {
+export function LessonStep({ day, onBack, backLabel, onComplete, onContinue }: LessonStepProps) {
   const content = getLessonContent(day);
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
 
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
         {content.subtitle}
@@ -30,7 +31,7 @@ export function LessonStep({ day, onBack, onComplete, onContinue }: LessonStepPr
       </div>
 
       <div className="mt-10">
-        <CompletionCheckbox completed={false} onComplete={onComplete} continueLabel="Continue" onContinue={onContinue} />
+        <CompletionCheckbox completed={false} onComplete={onComplete} continueLabel="Continue to Practice" onContinue={onContinue} />
       </div>
     </div>
   );

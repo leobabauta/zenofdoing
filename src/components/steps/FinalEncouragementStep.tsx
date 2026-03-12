@@ -4,15 +4,16 @@ import { LotusIllustration } from '../ui/Illustrations';
 
 interface FinalEncouragementStepProps {
   onBack: () => void;
+  backLabel?: string;
   onContinue: () => void;
 }
 
-export function FinalEncouragementStep({ onBack, onContinue }: FinalEncouragementStepProps) {
+export function FinalEncouragementStep({ onBack, backLabel, onContinue }: FinalEncouragementStepProps) {
   const content = day6FinalEncouragement;
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
 
       <div className="flex justify-center mb-6">
         <LotusIllustration className="w-48" />

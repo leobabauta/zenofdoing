@@ -6,7 +6,7 @@ import { useAuth } from './hooks/useAuth';
 import { supabase } from './lib/supabase';
 import { loadProgress, saveProgress, loadJournal, saveJournalEntry } from './lib/sync';
 import { getAvailableDays, getCurrentDay, getNextStepId } from './lib/courseProgress';
-import { parseStepId } from './data/courseDefinition';
+import { parseStepId, getPreviousStep } from './data/courseDefinition';
 
 export interface JournalEntry {
   date: string;
@@ -125,6 +125,15 @@ export default function App() {
 
   const goHome = useCallback(() => navigate('main'), [navigate]);
 
+  const goBack = useCallback(() => {
+    const prev = getPreviousStep(currentStepId);
+    if (prev) {
+      navigate('step', prev.id);
+    } else {
+      navigate('main');
+    }
+  }, [currentStepId, navigate]);
+
   // Auth gating
   if (supabase && authLoading) return null;
   if (supabase && !user) return <LoginPage />;
@@ -146,7 +155,8 @@ export default function App() {
         {view === 'step' && (
           <StepRenderer
             stepId={currentStepId}
-            onBack={goHome}
+            onBack={goBack}
+            onHome={goHome}
             onComplete={() => markStepComplete(currentStepId)}
             onContinue={handleStepContinue}
             onSaveJournal={addJournalEntry}
@@ -157,7 +167,7 @@ export default function App() {
   );
 }
 
-export function BackButton({ onClick }: { onClick: () => void }) {
+export function BackButton({ onClick, label = 'Back' }: { onClick: () => void; label?: string }) {
   return (
     <button
       onClick={onClick}
@@ -166,7 +176,7 @@ export function BackButton({ onClick }: { onClick: () => void }) {
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
       </svg>
-      Home
+      {label}
     </button>
   );
 }

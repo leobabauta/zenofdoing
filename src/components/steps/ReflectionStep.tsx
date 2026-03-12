@@ -7,11 +7,12 @@ interface ReflectionStepProps {
   day: number;
   title?: string;
   onBack: () => void;
+  backLabel?: string;
   onSave: (entry: JournalEntry) => void;
   onContinue: () => void;
 }
 
-export function ReflectionStep({ day, title, onBack, onSave, onContinue }: ReflectionStepProps) {
+export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContinue }: ReflectionStepProps) {
   const content = getReflectionContent(day);
   const prompts = content.prompts;
   const [responses, setResponses] = useState(() => prompts.map(() => ''));
@@ -42,7 +43,7 @@ export function ReflectionStep({ day, title, onBack, onSave, onContinue }: Refle
   if (saved) {
     return (
       <div className="px-10 py-10">
-        <BackButton onClick={onBack} />
+        <BackButton onClick={onBack} label={backLabel} />
         <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
           Day {day} · Reflection Saved
         </p>
@@ -91,7 +92,7 @@ export function ReflectionStep({ day, title, onBack, onSave, onContinue }: Refle
 
   return (
     <div className="px-10 py-10">
-      <BackButton onClick={onBack} />
+      <BackButton onClick={onBack} label={backLabel} />
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
         Day {day} · Practice
       </p>
