@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { IntroTeaching } from './components/teachings/IntroTeaching';
 import { PracticeSetup } from './components/teachings/PracticeSetup';
 import { PracticeTimer } from './components/teachings/PracticeTimer';
@@ -7,6 +7,7 @@ import { MainApp } from './components/main/MainApp';
 import { LoginPage } from './components/auth/LoginPage';
 import { useAuth } from './hooks/useAuth';
 import { supabase } from './lib/supabase';
+import { loadProgress, saveProgress, loadJournal, saveJournalEntry } from './lib/sync';
 
 export type Screen = 'intro' | 'practice-setup' | 'practice-timer' | 'reflection' | 'practice-2' | 'main';
 
@@ -21,10 +22,37 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>('main');
   const [completedScreens, setCompletedScreens] = useState<Set<Screen>>(new Set());
   const [currentLesson, setCurrentLesson] = useState<Screen>('intro');
-  const [journal, setJournal] = useState<JournalEntry[]>(() => {
-    const saved = localStorage.getItem('zenofdoing-journal');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [journal, setJournal] = useState<JournalEntry[]>([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+  const hasSynced = useRef(false);
+
+  // Load user data from Supabase on login
+  useEffect(() => {
+    if (!user || hasSynced.current) return;
+    hasSynced.current = true;
+
+    async function load() {
+      const progress = await loadProgress(user!.id);
+      if (progress) {
+        setCompletedScreens(new Set(progress.completedScreens));
+        setCurrentLesson(progress.currentLesson);
+      }
+
+      const entries = await loadJournal(user!.id);
+      if (entries.length > 0) {
+        setJournal(entries);
+      }
+
+      setDataLoaded(true);
+    }
+
+    load();
+  }, [user]);
+
+  // If no Supabase, mark as loaded immediately
+  useEffect(() => {
+    if (!supabase) setDataLoaded(true);
+  }, []);
 
   const navigate = useCallback((to: Screen) => {
     setScreen(to);
@@ -32,31 +60,36 @@ export default function App() {
   }, []);
 
   const markComplete = useCallback((s: Screen) => {
-    setCompletedScreens((prev) => new Set(prev).add(s));
-  }, []);
-
-  const addJournalEntry = useCallback((entry: JournalEntry) => {
-    setJournal((prev) => {
-      const next = [...prev, entry];
-      localStorage.setItem('zenofdoing-journal', JSON.stringify(next));
+    setCompletedScreens((prev) => {
+      const next = new Set(prev).add(s);
+      if (user) saveProgress(user.id, next, currentLesson);
       return next;
     });
-  }, []);
+  }, [user, currentLesson]);
+
+  const updateCurrentLesson = useCallback((lesson: Screen) => {
+    setCurrentLesson(lesson);
+    if (user) saveProgress(user.id, completedScreens, lesson);
+  }, [user, completedScreens]);
+
+  const addJournalEntry = useCallback((entry: JournalEntry) => {
+    setJournal((prev) => [...prev, entry]);
+    if (user) saveJournalEntry(user.id, entry);
+  }, [user]);
 
   const handleNavigateToScreen = useCallback((target: Screen) => {
-    setCurrentLesson(target);
+    updateCurrentLesson(target);
     navigate(target);
-  }, [navigate]);
+  }, [navigate, updateCurrentLesson]);
 
   const goHome = useCallback(() => navigate('main'), [navigate]);
 
   // If Supabase is configured, require auth
-  if (supabase && authLoading) {
-    return null; // loading
-  }
-  if (supabase && !user) {
-    return <LoginPage />;
-  }
+  if (supabase && authLoading) return null;
+  if (supabase && !user) return <LoginPage />;
+
+  // Wait for data to load
+  if (!dataLoaded) return null;
 
   return (
     <div className="min-h-screen flex justify-center px-4 py-10">
@@ -74,7 +107,7 @@ export default function App() {
             onBack={goHome}
             onContinue={() => {
               markComplete('intro');
-              setCurrentLesson('practice-setup');
+              updateCurrentLesson('practice-setup');
               navigate('practice-setup');
             }}
           />
@@ -84,7 +117,7 @@ export default function App() {
             onBack={goHome}
             onContinue={() => {
               markComplete('practice-setup');
-              setCurrentLesson('practice-timer');
+              updateCurrentLesson('practice-timer');
               navigate('practice-timer');
             }}
           />
@@ -94,7 +127,7 @@ export default function App() {
             onBack={goHome}
             onContinue={() => {
               markComplete('practice-timer');
-              setCurrentLesson('reflection');
+              updateCurrentLesson('reflection');
               navigate('reflection');
             }}
           />
@@ -105,7 +138,7 @@ export default function App() {
             onSave={addJournalEntry}
             onContinue={() => {
               markComplete('reflection');
-              setCurrentLesson('practice-2');
+              updateCurrentLesson('practice-2');
               navigate('main');
             }}
           />
