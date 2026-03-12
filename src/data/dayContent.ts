@@ -40,15 +40,15 @@ export const day1Overview: OverviewContent = {
   title: 'The Zen of Doing',
   paragraphs: [
     'Most of us move through our days rushing, stressed, overwhelmed, avoiding, grinding — treating everything as something to get through. This challenge invites a different way.',
-    "We're going to practice Doing with Ease for the next 5 days. Doing with ease isn't about doing less or doing it slowly (necessarily). It's about bringing a quality of openness, presence and flow to whatever you're already doing — washing dishes, sending emails, having hard conversations. Doing with ease is a way of being … but it's also a skill, and like any skill, it can be trained.",
+    "We're going to practice **Doing with Ease** for the next 5 days. Doing with ease isn't about doing less or doing it slowly (necessarily). It's about bringing a quality of openness, presence and flow to whatever you're already doing — washing dishes, sending emails, having hard conversations. Doing with ease is a way of being … but it's also a skill, and like any skill, it can be trained.",
     "Over the next 5 days, you'll practice one simple thing: gently shifting toward ease. On day 6, you'll step back and reflect on what you noticed and learned.",
     'Each day has three parts:',
     {
       type: 'list',
       items: [
-        "A Lesson: We'll look at a key way of looking at the practice you'll be doing that day.",
-        "A Practice: I'll give you instructions and ask you to do a small, simple practice for a few minutes.",
-        "A Reflection: After you practice for a few minutes, you'll do a short reflection to share what you noticed. This is a key part of practicing — learning from the practice.",
+        "**A Lesson:** We'll look at a key way of looking at the practice you'll be doing that day.",
+        "**A Practice:** I'll give you instructions and ask you to do a small, simple practice for a few minutes.",
+        "**A Reflection:** After you practice for a few minutes, you'll do a short reflection to share what you noticed. This is a key part of practicing — learning from the practice.",
       ],
     },
     "Then you'll be given an encouragement to keep practicing during the day, and to share how that went the next day.",
