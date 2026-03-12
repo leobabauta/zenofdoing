@@ -1,4 +1,4 @@
-import { LotusIllustration } from '../ui/Illustrations';
+import { HomeIllustration } from '../ui/Illustrations';
 import { COURSE, getDayDef } from '../../data/courseDefinition';
 import { getDayProgress, getFirstIncompleteStep, isDayComplete } from '../../lib/courseProgress';
 
@@ -16,7 +16,6 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
   const dayComplete = isDayComplete(currentDay, completedSteps);
   const isNewUser = completedSteps.size === 0;
 
-  // Find next locked day for teaser
   const nextLockedDay = availableDays < 6 ? availableDays + 1 : null;
 
   return (
@@ -35,8 +34,8 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
           }}
           className="w-full text-left rounded-2xl overflow-hidden bg-[var(--color-card-inner)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors group"
         >
-          <div className="overflow-hidden">
-            <LotusIllustration className="w-full" />
+          <div className="overflow-hidden rounded-t-2xl">
+            <HomeIllustration className="w-full" />
           </div>
           <div className="px-5 py-4">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-1">
@@ -65,8 +64,8 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
           </div>
         </button>
 
-        {/* Day overview dots */}
-        <div className="flex justify-center gap-2 py-2">
+        {/* Day progress circles */}
+        <div className="flex justify-center gap-3 py-3">
           {COURSE.map((d) => {
             const available = d.day <= availableDays;
             const complete = isDayComplete(d.day, completedSteps);
@@ -74,17 +73,25 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
             return (
               <div
                 key={d.day}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
                   complete
-                    ? 'bg-emerald-500'
+                    ? 'bg-amber-100 border-2 border-amber-400'
                     : isCurrent
-                      ? 'bg-[var(--color-accent)]'
+                      ? 'bg-[var(--color-accent-tint)] border-2 border-[var(--color-accent)] text-[var(--color-accent)]'
                       : available
-                        ? 'bg-[var(--color-border)]'
-                        : 'bg-[var(--color-border)] opacity-40'
+                        ? 'bg-[var(--color-card-inner)] border border-[var(--color-border)] text-[var(--color-text-muted)]'
+                        : 'bg-[var(--color-card-inner)] border border-[var(--color-border)] text-[var(--color-text-muted)] opacity-40'
                 }`}
                 title={`Day ${d.day}: ${d.title}${!available ? ' (locked)' : complete ? ' (complete)' : ''}`}
-              />
+              >
+                {complete ? (
+                  <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z" />
+                  </svg>
+                ) : (
+                  d.day
+                )}
+              </div>
             );
           })}
         </div>

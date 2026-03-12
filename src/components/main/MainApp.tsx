@@ -1,9 +1,8 @@
-import { useState } from 'react';
-import { BottomNav, type NavTab } from './BottomNav';
 import { HomeScreen } from './HomeScreen';
 import { ContentsScreen } from './ContentsScreen';
 import { JournalScreen } from './JournalScreen';
 import type { JournalEntry } from '../../App';
+import type { NavTab } from './BottomNav';
 
 interface MainAppProps {
   journal: JournalEntry[];
@@ -11,15 +10,14 @@ interface MainAppProps {
   currentDay: number;
   availableDays: number;
   currentStepId: string;
+  activeTab: NavTab;
   onNavigateToStep: (stepId: string) => void;
 }
 
-export function MainApp({ journal, completedSteps, currentDay, availableDays, currentStepId, onNavigateToStep }: MainAppProps) {
-  const [tab, setTab] = useState<NavTab>('home');
-
+export function MainApp({ journal, completedSteps, currentDay, availableDays, currentStepId, activeTab, onNavigateToStep }: MainAppProps) {
   return (
-    <div className="flex flex-col" style={{ minHeight: 'calc(100vh - 80px)' }}>
-      {tab === 'home' && (
+    <>
+      {activeTab === 'home' && (
         <HomeScreen
           currentDay={currentDay}
           availableDays={availableDays}
@@ -27,7 +25,7 @@ export function MainApp({ journal, completedSteps, currentDay, availableDays, cu
           onNavigateToStep={onNavigateToStep}
         />
       )}
-      {tab === 'contents' && (
+      {activeTab === 'contents' && (
         <ContentsScreen
           completedSteps={completedSteps}
           availableDays={availableDays}
@@ -35,10 +33,9 @@ export function MainApp({ journal, completedSteps, currentDay, availableDays, cu
           onSelectStep={onNavigateToStep}
         />
       )}
-      {tab === 'journal' && (
+      {activeTab === 'journal' && (
         <JournalScreen entries={journal} />
       )}
-      <BottomNav active={tab} onNavigate={setTab} />
-    </div>
+    </>
   );
 }

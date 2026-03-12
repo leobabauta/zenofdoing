@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { MainApp } from './components/main/MainApp';
 import { StepRenderer } from './components/steps/StepRenderer';
+import { BottomNav, type NavTab } from './components/main/BottomNav';
 import { LoginPage } from './components/auth/LoginPage';
 import { useAuth } from './hooks/useAuth';
 import { supabase } from './lib/supabase';
@@ -19,6 +20,7 @@ export default function App() {
   const { user, loading: authLoading } = useAuth();
 
   const [view, setView] = useState<AppView>('main');
+  const [activeTab, setActiveTab] = useState<NavTab>('home');
   const [completedSteps, setCompletedSteps] = useState<Set<string>>(new Set());
   const [currentStepId, setCurrentStepId] = useState('day1.overview');
   const [courseStartedAt, setCourseStartedAt] = useState<string | null>(null);
@@ -79,6 +81,7 @@ export default function App() {
   const navigate = useCallback((to: AppView, stepId?: string) => {
     setView(to);
     if (stepId) setCurrentStepId(stepId);
+    if (to === 'main') setActiveTab('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
@@ -95,7 +98,6 @@ export default function App() {
   const handleStepContinue = useCallback(() => {
     const nextId = getNextStepId(currentStepId);
     if (nextId) {
-      // Check if next step is in a day that's available
       const { day } = parseStepId(nextId);
       if (day <= availableDays) {
         setCurrentStepId(nextId);
@@ -106,7 +108,6 @@ export default function App() {
         return;
       }
     }
-    // Day is done or next day locked — go home
     navigate('main');
   }, [currentStepId, availableDays, user, courseStartedAt, completedSteps, navigate]);
 
@@ -134,6 +135,14 @@ export default function App() {
     }
   }, [currentStepId, navigate]);
 
+  const handleNavTab = useCallback((tab: NavTab) => {
+    setActiveTab(tab);
+    if (view === 'step') {
+      setView('main');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [view]);
+
   // Auth gating
   if (supabase && authLoading) return null;
   if (supabase && !user) return <LoginPage />;
@@ -142,26 +151,30 @@ export default function App() {
   return (
     <div className="min-h-screen flex justify-center px-4 py-10">
       <div className="w-full max-w-[640px] bg-[var(--color-card)] rounded-3xl shadow-xl shadow-black/8 overflow-hidden flex flex-col">
-        {view === 'main' && (
-          <MainApp
-            journal={journal}
-            completedSteps={completedSteps}
-            currentDay={currentDay}
-            availableDays={availableDays}
-            currentStepId={currentStepId}
-            onNavigateToStep={handleNavigateToStep}
-          />
-        )}
-        {view === 'step' && (
-          <StepRenderer
-            stepId={currentStepId}
-            onBack={goBack}
-            onHome={goHome}
-            onComplete={() => markStepComplete(currentStepId)}
-            onContinue={handleStepContinue}
-            onSaveJournal={addJournalEntry}
-          />
-        )}
+        <div className="flex-1 flex flex-col" style={{ minHeight: 'calc(100vh - 80px)' }}>
+          {view === 'main' && (
+            <MainApp
+              journal={journal}
+              completedSteps={completedSteps}
+              currentDay={currentDay}
+              availableDays={availableDays}
+              currentStepId={currentStepId}
+              activeTab={activeTab}
+              onNavigateToStep={handleNavigateToStep}
+            />
+          )}
+          {view === 'step' && (
+            <StepRenderer
+              stepId={currentStepId}
+              onBack={goBack}
+              onHome={goHome}
+              onComplete={() => markStepComplete(currentStepId)}
+              onContinue={handleStepContinue}
+              onSaveJournal={addJournalEntry}
+            />
+          )}
+        </div>
+        <BottomNav active={view === 'step' ? 'home' : activeTab} onNavigate={handleNavTab} />
       </div>
     </div>
   );

@@ -18,10 +18,11 @@ interface CompletionCheckboxProps {
   onContinue: () => void;
 }
 
-export function CompletionCheckbox({ completed, onComplete, continueLabel, onContinue }: CompletionCheckboxProps) {
+export function CompletionCheckbox({ completed: initialCompleted, onComplete, continueLabel, onContinue }: CompletionCheckboxProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [origin, setOrigin] = useState({ x: 0, y: 0 });
   const [pendingCheck, setPendingCheck] = useState(false);
+  const [done, setDone] = useState(initialCompleted);
   const nextId = useRef(0);
   const btnRef = useRef<HTMLButtonElement>(null);
 
@@ -48,13 +49,14 @@ export function CompletionCheckbox({ completed, onComplete, continueLabel, onCon
   const handleMarkComplete = () => {
     setPendingCheck(true);
     setTimeout(spawnConfetti, 80);
+    onComplete();
     setTimeout(() => {
       setPendingCheck(false);
-      onComplete();
+      setDone(true);
     }, 1500);
   };
 
-  if (completed || pendingCheck) {
+  if (done || pendingCheck) {
     return (
       <>
         <div className="flex items-center gap-4">
@@ -66,7 +68,7 @@ export function CompletionCheckbox({ completed, onComplete, continueLabel, onCon
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </button>
-          {completed && (
+          {done && (
             <button
               onClick={onContinue}
               className="flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"

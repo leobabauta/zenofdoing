@@ -157,7 +157,7 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
           disabled={!canSave}
           className="rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Save Reflection
+          Save reflection to journal
         </button>
       </div>
     </div>
