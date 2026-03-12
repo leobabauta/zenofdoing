@@ -1,21 +1,34 @@
 import { COURSE, parseStepId, getNextStep } from '../data/courseDefinition';
 
 /**
- * Calculate how many days are available based on when the user started the course.
- * Day 1 is available immediately. Day N unlocks at local midnight (N-1) calendar days after start.
+ * Calculate how many days are available.
+ * Day 1 is always available.
+ * Day N (N>1) requires:
+ *   1. Day N-1 is fully complete
+ *   2. At least N-1 calendar days have passed since course start (i.e. midnight boundary)
  */
-export function getAvailableDays(courseStartedAt: string): number {
+export function getAvailableDays(courseStartedAt: string, completedSteps: Set<string>): number {
   const start = new Date(courseStartedAt);
   const now = new Date();
 
-  // Get calendar dates in local timezone
   const startDate = new Date(start.getFullYear(), start.getMonth(), start.getDate());
   const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   const msPerDay = 24 * 60 * 60 * 1000;
   const daysElapsed = Math.floor((todayDate.getTime() - startDate.getTime()) / msPerDay);
 
-  return Math.min(6, Math.max(1, daysElapsed + 1));
+  let available = 1;
+  for (let d = 2; d <= 6; d++) {
+    const prevComplete = isDayComplete(d - 1, completedSteps);
+    const timeUnlocked = daysElapsed >= d - 1;
+    if (prevComplete && timeUnlocked) {
+      available = d;
+    } else {
+      break;
+    }
+  }
+
+  return available;
 }
 
 /**
@@ -46,13 +59,11 @@ export function getCurrentDay(completedSteps: Set<string>, availableDays: number
   for (let d = 1; d <= availableDays; d++) {
     if (!isDayComplete(d, completedSteps)) return d;
   }
-  // All available days complete
   return availableDays;
 }
 
 /**
  * Get the next step to navigate to after completing a step.
- * Returns the next step in the day, or null if the day is done.
  */
 export function getNextStepId(currentStepId: string): string | null {
   const next = getNextStep(currentStepId);

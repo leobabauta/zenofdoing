@@ -2,90 +2,90 @@
 
 export function HomeIllustration({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 400 220" className={className} xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 400 200" className={className} xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="home-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#e8dff5" />
-          <stop offset="100%" stopColor="#d5c8eb" />
+          <stop offset="0%" stopColor="#e0d6f0" />
+          <stop offset="50%" stopColor="#d8cce8" />
+          <stop offset="100%" stopColor="#e8d6e0" />
         </linearGradient>
-        <radialGradient id="home-glow" cx="50%" cy="45%" r="45%">
-          <stop offset="0%" stopColor="#f0e8fa" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#ddd0ef" stopOpacity="0" />
+        <radialGradient id="orb-main" cx="40%" cy="40%" r="55%">
+          <stop offset="0%" stopColor="#c4a8e8" />
+          <stop offset="40%" stopColor="#a888d0" />
+          <stop offset="100%" stopColor="#8068b0" />
         </radialGradient>
-        <linearGradient id="figure-skin" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#f5c4a1" />
-          <stop offset="100%" stopColor="#e8b08a" />
+        <radialGradient id="orb-small1" cx="35%" cy="35%" r="60%">
+          <stop offset="0%" stopColor="#e0c8f0" />
+          <stop offset="100%" stopColor="#b898d8" />
+        </radialGradient>
+        <radialGradient id="orb-small2" cx="45%" cy="40%" r="55%">
+          <stop offset="0%" stopColor="#f0d8e8" />
+          <stop offset="100%" stopColor="#d0a8c4" />
+        </radialGradient>
+        <radialGradient id="orb-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#f0e8fa" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#d8d0e8" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="ring1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#c4b0e0" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#a090c8" stopOpacity="0.2" />
         </linearGradient>
-        <linearGradient id="figure-hair" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#4a3560" />
-          <stop offset="100%" stopColor="#3a2850" />
-        </linearGradient>
-        <linearGradient id="figure-shirt" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#7b5ea7" />
-          <stop offset="100%" stopColor="#6a4f96" />
-        </linearGradient>
-        <linearGradient id="figure-wrap" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#e8a840" />
-          <stop offset="100%" stopColor="#d49530" />
+        <linearGradient id="swirl" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#d4c0e8" stopOpacity="0.1" />
+          <stop offset="50%" stopColor="#c0a8d8" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#d4c0e8" stopOpacity="0.1" />
         </linearGradient>
       </defs>
 
       {/* Background */}
-      <rect width="400" height="220" rx="0" fill="url(#home-bg)" />
-      <circle cx="200" cy="100" r="90" fill="url(#home-glow)" />
+      <rect width="400" height="200" fill="url(#home-bg)" />
 
-      {/* Decorative circle behind figure */}
-      <circle cx="200" cy="95" r="72" fill="none" stroke="#c4b0e0" strokeWidth="1.5" opacity="0.4" />
-      <circle cx="200" cy="95" r="80" fill="none" stroke="#c4b0e0" strokeWidth="0.8" opacity="0.25" />
+      {/* Background glow */}
+      <circle cx="200" cy="95" r="100" fill="url(#orb-glow)" />
 
-      {/* Floating particles */}
-      <circle cx="120" cy="55" r="2" fill="#e8a840" opacity="0.6" />
-      <circle cx="280" cy="45" r="1.5" fill="#e8a840" opacity="0.5" />
-      <circle cx="140" cy="150" r="1.8" fill="#c4b0e0" opacity="0.4" />
-      <circle cx="260" cy="140" r="2.2" fill="#e8a840" opacity="0.4" />
-      <circle cx="310" cy="80" r="1.5" fill="#c4b0e0" opacity="0.5" />
-      <circle cx="95" cy="100" r="1.2" fill="#e8a840" opacity="0.3" />
+      {/* Flowing curves behind orbs */}
+      <path d="M40 160 Q100 120 160 140 Q220 160 280 130 Q340 100 400 120" fill="none" stroke="url(#swirl)" strokeWidth="2.5" />
+      <path d="M0 140 Q60 110 130 125 Q200 140 270 110 Q340 80 400 100" fill="none" stroke="url(#swirl)" strokeWidth="1.8" />
+      <path d="M0 175 Q80 155 160 165 Q240 175 320 155 Q380 140 400 150" fill="none" stroke="url(#swirl)" strokeWidth="1.2" />
 
-      {/* Seated figure - cross-legged meditation pose */}
-      {/* Body/torso */}
-      <path d="M200 78 Q192 95 185 115 Q178 130 170 140 L230 140 Q222 130 215 115 Q208 95 200 78Z" fill="url(#figure-shirt)" />
+      {/* Orbital ring behind main sphere */}
+      <ellipse cx="200" cy="95" rx="90" ry="30" fill="none" stroke="url(#ring1)" strokeWidth="1.5" transform="rotate(-15 200 95)" />
 
-      {/* Wrap/shawl flowing from shoulder */}
-      <path d="M192 85 Q175 92 165 105 Q158 115 155 128 Q160 130 168 125 Q175 115 185 100 Q190 90 192 85Z" fill="url(#figure-wrap)" opacity="0.9" />
-      <path d="M208 85 Q220 90 228 95 Q238 105 245 120 Q248 128 244 130 Q240 125 235 115 Q225 100 215 92 Q210 88 208 85Z" fill="url(#figure-wrap)" opacity="0.7" />
+      {/* Main sphere */}
+      <circle cx="200" cy="90" r="52" fill="url(#orb-main)" />
+      {/* Surface bands on main sphere */}
+      <path d="M155 78 Q175 72 200 74 Q225 76 245 82" fill="none" stroke="#b898d8" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
+      <path d="M160 92 Q180 88 200 89 Q220 90 240 95" fill="none" stroke="#d0b8e8" strokeWidth="2.5" strokeLinecap="round" opacity="0.3" />
+      <path d="M165 105 Q185 100 200 101 Q220 103 238 108" fill="none" stroke="#c0a8d8" strokeWidth="2" strokeLinecap="round" opacity="0.25" />
+      {/* Highlight on sphere */}
+      <circle cx="182" cy="72" r="12" fill="white" opacity="0.15" />
+      <circle cx="178" cy="68" r="5" fill="white" opacity="0.2" />
 
-      {/* Neck */}
-      <rect x="195" y="70" width="10" height="12" rx="4" fill="url(#figure-skin)" />
+      {/* Small sphere - top right */}
+      <circle cx="310" cy="55" r="22" fill="url(#orb-small1)" />
+      <circle cx="303" cy="48" r="5" fill="white" opacity="0.15" />
+      <path d="M293 52 Q303 49 318 51" fill="none" stroke="#c8b0e0" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
 
-      {/* Head */}
-      <ellipse cx="200" cy="60" rx="16" ry="18" fill="url(#figure-skin)" />
+      {/* Small sphere - bottom left */}
+      <circle cx="90" cy="130" r="18" fill="url(#orb-small2)" />
+      <circle cx="84" cy="124" r="4" fill="white" opacity="0.15" />
+      <path d="M76 128 Q86 125 100 127" fill="none" stroke="#d8b8d0" strokeWidth="1.2" strokeLinecap="round" opacity="0.3" />
 
-      {/* Hair */}
-      <path d="M184 55 Q184 38 200 36 Q216 38 216 55 Q214 48 208 44 Q200 42 192 44 Q186 48 184 55Z" fill="url(#figure-hair)" />
-      {/* Hair bun */}
-      <ellipse cx="200" cy="37" rx="8" ry="7" fill="url(#figure-hair)" />
+      {/* Tiny accent spheres */}
+      <circle cx="340" cy="140" r="8" fill="#d8c0e8" opacity="0.5" />
+      <circle cx="60" cy="60" r="6" fill="#e0d0f0" opacity="0.4" />
+      <circle cx="140" cy="45" r="4" fill="#c8b0d8" opacity="0.35" />
+      <circle cx="280" cy="150" r="5" fill="#e0c8e0" opacity="0.4" />
 
-      {/* Closed eyes */}
-      <path d="M192 58 Q194 60 196 58" fill="none" stroke="#5a4060" strokeWidth="1.2" strokeLinecap="round" />
-      <path d="M204 58 Q206 60 208 58" fill="none" stroke="#5a4060" strokeWidth="1.2" strokeLinecap="round" />
+      {/* Sparkle dots */}
+      <circle cx="155" cy="55" r="1.5" fill="white" opacity="0.6" />
+      <circle cx="260" cy="65" r="1.5" fill="white" opacity="0.5" />
+      <circle cx="330" cy="100" r="1.2" fill="white" opacity="0.4" />
+      <circle cx="110" cy="95" r="1.2" fill="white" opacity="0.5" />
+      <circle cx="240" cy="155" r="1" fill="white" opacity="0.4" />
 
-      {/* Gentle smile */}
-      <path d="M196 65 Q200 67 204 65" fill="none" stroke="#c48a70" strokeWidth="0.8" strokeLinecap="round" />
-
-      {/* Hands in lap (meditation mudra) */}
-      <ellipse cx="193" cy="130" rx="8" ry="5" fill="url(#figure-skin)" transform="rotate(-10 193 130)" />
-      <ellipse cx="207" cy="130" rx="8" ry="5" fill="url(#figure-skin)" transform="rotate(10 207 130)" />
-
-      {/* Crossed legs */}
-      <path d="M170 140 Q175 150 185 155 Q195 158 200 155 Q205 158 215 155 Q225 150 230 140" fill="url(#figure-shirt)" opacity="0.85" />
-
-      {/* Small glow orb in hands */}
-      <circle cx="200" cy="128" r="6" fill="#f0e8fa" opacity="0.6" />
-      <circle cx="200" cy="128" r="3" fill="#e8dff5" opacity="0.8" />
-
-      {/* Flowing lines around figure */}
-      <path d="M130 170 Q165 160 200 165 Q235 170 270 162" fill="none" stroke="#c4b0e0" strokeWidth="1" opacity="0.3" />
-      <path d="M140 180 Q170 173 200 176 Q230 179 260 174" fill="none" stroke="#c4b0e0" strokeWidth="0.8" opacity="0.2" />
+      {/* Second orbital ring in front */}
+      <ellipse cx="200" cy="95" rx="75" ry="25" fill="none" stroke="url(#ring1)" strokeWidth="1" transform="rotate(20 200 95)" />
     </svg>
   );
 }

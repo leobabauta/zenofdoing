@@ -75,7 +75,7 @@ export default function App() {
     }
   }, [dataLoaded, courseStartedAt, user, completedSteps, currentStepId]);
 
-  const availableDays = courseStartedAt ? getAvailableDays(courseStartedAt) : 1;
+  const availableDays = courseStartedAt ? getAvailableDays(courseStartedAt, completedSteps) : 1;
   const currentDay = getCurrentDay(completedSteps, availableDays);
 
   const navigate = useCallback((to: AppView, stepId?: string) => {

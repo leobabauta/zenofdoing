@@ -22,10 +22,20 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
     <div className="px-8 py-10 flex-1 overflow-y-auto">
       <p className="text-sm text-[var(--color-text-muted)] mb-1">{isNewUser ? 'Welcome!' : 'Welcome back'}</p>
       <h1 className="text-2xl font-bold text-[var(--color-text-primary)] tracking-tight">
-        Zen of Doing
+        Zen of Doing practice app
       </h1>
 
-      <div className="mt-8 space-y-4">
+      {/* Intro text */}
+      <p className="mt-4 text-[14px] leading-relaxed text-[var(--color-text-secondary)]">
+        Zen of Doing is a 6-day training in <strong className="font-semibold text-[var(--color-text-primary)]">Doing with Ease</strong>.
+        Each day, you'll get a short lesson, and do a practice, do a reflection in your journal,
+        and then be asked to practice during the day. Enjoy the training!
+      </p>
+      <p className="mt-2 text-[13px] text-[var(--color-text-muted)] italic">
+        —Leo Babauta
+      </p>
+
+      <div className="mt-6 space-y-4">
         {/* Current Day Card */}
         <button
           onClick={() => {
