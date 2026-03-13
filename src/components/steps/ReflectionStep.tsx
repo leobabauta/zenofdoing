@@ -95,7 +95,7 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
                 {Array.from(selectedBlockers).map((b) => (
                   <span
                     key={b}
-                    className="px-3 py-1.5 rounded-full text-sm bg-[var(--color-accent-tint)] border border-[var(--color-accent)] text-[var(--color-accent)]"
+                    className="px-3 py-1.5 rounded-full text-sm bg-amber-100 border border-amber-400 text-amber-700"
                   >
                     {b}
                   </span>
@@ -187,8 +187,8 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
                   onClick={() => toggleBlocker(blocker)}
                   className={`px-3 py-1.5 rounded-full text-sm border transition-all ${
                     selected
-                      ? 'bg-[var(--color-accent-tint)] border-[var(--color-accent)] text-[var(--color-accent)] font-medium'
-                      : 'bg-[var(--color-card-inner)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]'
+                      ? 'bg-amber-100 border-amber-400 text-amber-700 font-medium'
+                      : 'bg-[var(--color-card-inner)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-amber-300 hover:text-amber-600'
                   }`}
                 >
                   {blocker}
