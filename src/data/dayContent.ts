@@ -16,11 +16,16 @@ export interface PracticeInstructionsContent {
   closingNote?: string;
 }
 
+export interface ReflectionPrompt {
+  text: string;
+  type?: 'text' | 'stars';
+}
+
 export interface ReflectionContent {
   intro?: string;
   blockersList?: string[];
   blockersNote?: string;
-  prompts: string[];
+  prompts: (string | ReflectionPrompt)[];
 }
 
 export interface EncouragementContent {
@@ -149,8 +154,8 @@ export const day2PracticeInstructions: PracticeInstructionsContent = {
 
 export const day2Reflection: ReflectionContent = {
   prompts: [
-    'Were you able to visualize an experience of ease? (rate 1-5: 1 for not at all, 5 for a vivid visualization)',
-    'Were you able to feel the ease in your body? (rate 1-5: 1 for not at all, 5 for absolutely)',
+    { text: 'Were you able to visualize an experience of ease?', type: 'stars' },
+    { text: 'Were you able to feel the ease in your body?', type: 'stars' },
     'What did you notice about the practice?',
     'What did your scene look like?',
     'Do you have any questions or difficulties around this practice?',

@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { BackButton } from '../../App';
 import { getReflectionContent } from '../../data/dayContent';
+import type { ReflectionPrompt } from '../../data/dayContent';
+import { StarRating } from '../ui/StarRating';
 import type { JournalEntry } from '../../App';
+
+function normalizePrompt(p: string | ReflectionPrompt): ReflectionPrompt {
+  return typeof p === 'string' ? { text: p, type: 'text' } : p;
+}
 
 interface ReflectionStepProps {
   day: number;
@@ -14,7 +20,7 @@ interface ReflectionStepProps {
 
 export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContinue }: ReflectionStepProps) {
   const content = getReflectionContent(day);
-  const prompts = content.prompts;
+  const prompts = content.prompts.map(normalizePrompt);
   const [responses, setResponses] = useState(() => prompts.map(() => ''));
   const [saved, setSaved] = useState(false);
 
@@ -32,7 +38,7 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
     const entry: JournalEntry = {
       date: new Date().toISOString(),
       reflections: prompts.map((prompt, i) => ({
-        prompt,
+        prompt: prompt.text,
         response: responses[i],
       })),
     };
@@ -56,12 +62,29 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
           {prompts.map((prompt, i) => (
             <div key={i}>
               <p className="text-sm font-medium text-[var(--color-text-primary)] mb-2">
-                {prompt}
+                {prompt.text}
               </p>
               {responses[i].trim() ? (
-                <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] bg-[var(--color-card-inner)] rounded-xl px-4 py-3">
-                  {responses[i]}
-                </p>
+                prompt.type === 'stars' ? (
+                  <div className="flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <svg
+                        key={s}
+                        className="w-5 h-5"
+                        viewBox="0 0 24 24"
+                        fill={s <= Number(responses[i]) ? '#d4a017' : 'none'}
+                        stroke={s <= Number(responses[i]) ? '#d4a017' : 'var(--color-text-muted)'}
+                        strokeWidth={1.5}
+                      >
+                        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z" />
+                      </svg>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] bg-[var(--color-card-inner)] rounded-xl px-4 py-3">
+                    {responses[i]}
+                  </p>
+                )
               ) : (
                 <p className="text-sm italic text-[var(--color-text-muted)]">
                   No response
@@ -138,15 +161,22 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
         {prompts.map((prompt, i) => (
           <div key={i}>
             <label className="block text-sm font-medium text-[var(--color-text-primary)] mb-2">
-              {prompt}
+              {prompt.text}
             </label>
-            <textarea
-              value={responses[i]}
-              onChange={(e) => updateResponse(i, e.target.value)}
-              rows={4}
-              placeholder="Write your thoughts here..."
-              className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card-inner)] px-4 py-3 text-[15px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none resize-y transition-colors"
-            />
+            {prompt.type === 'stars' ? (
+              <StarRating
+                value={Number(responses[i]) || 0}
+                onChange={(val) => updateResponse(i, String(val))}
+              />
+            ) : (
+              <textarea
+                value={responses[i]}
+                onChange={(e) => updateResponse(i, e.target.value)}
+                rows={4}
+                placeholder="Write your thoughts here..."
+                className="w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-card-inner)] px-4 py-3 text-[15px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:outline-none resize-y transition-colors"
+              />
+            )}
           </div>
         ))}
       </div>
