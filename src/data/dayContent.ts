@@ -94,7 +94,7 @@ export const day1Lesson: LessonContent = {
 };
 
 export const day1Reflection: ReflectionContent = {
-  intro: "Today, we're going to do a bit of a reflection. See if you can recognize your main blockers out of this list … but also, any others you can think of:",
+  intro: "Please choose which of the following are your main blockers:",
   blockersList: [
     'Resistance', 'Rushing', 'Expectation', 'Self-judgment', 'Distraction',
     'Tension', 'Overthinking', 'Fear of failure', 'People-pleasing',
@@ -102,9 +102,10 @@ export const day1Reflection: ReflectionContent = {
   ],
   blockersNote: "By the way, many of these overlap each other, so it's OK to choose more than one if you're not sure which fit best.",
   prompts: [
-    "Which on the list above are your biggest blockers? Feel free to list ones that aren't here as well.",
+    "Do you have any other blockers you can see that aren't on the list above?",
     'What activities do you notice them coming up, blocking a sense of ease and flow as you act?',
-    'What do they protect you from? What do they make impossible?',
+    'What do they protect you from?',
+    'What do they make impossible?',
   ],
 };
 

@@ -22,6 +22,7 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
   const content = getReflectionContent(day);
   const prompts = content.prompts.map(normalizePrompt);
   const [responses, setResponses] = useState(() => prompts.map(() => ''));
+  const [selectedBlockers, setSelectedBlockers] = useState<Set<string>>(new Set());
   const [saved, setSaved] = useState(false);
 
   const updateResponse = (index: number, value: string) => {
@@ -32,15 +33,40 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
     });
   };
 
-  const canSave = responses.some((r) => r.trim().length > 0);
+  const toggleBlocker = (blocker: string) => {
+    setSelectedBlockers((prev) => {
+      const next = new Set(prev);
+      if (next.has(blocker)) next.delete(blocker);
+      else next.add(blocker);
+      return next;
+    });
+  };
+
+  const hasBlockerSelection = selectedBlockers.size > 0;
+  const canSave = responses.some((r) => r.trim().length > 0) || hasBlockerSelection;
 
   const handleSave = () => {
-    const entry: JournalEntry = {
-      date: new Date().toISOString(),
-      reflections: prompts.map((prompt, i) => ({
+    const reflections: JournalEntry['reflections'] = [];
+
+    // Include blocker selections as a journal entry if present
+    if (content.blockersList && selectedBlockers.size > 0) {
+      reflections.push({
+        prompt: 'Main blockers',
+        response: Array.from(selectedBlockers).join(', '),
+      });
+    }
+
+    // Include prompt responses
+    prompts.forEach((prompt, i) => {
+      reflections.push({
         prompt: prompt.text,
         response: responses[i],
-      })),
+      });
+    });
+
+    const entry: JournalEntry = {
+      date: new Date().toISOString(),
+      reflections,
     };
     onSave(entry);
     setSaved(true);
@@ -59,6 +85,25 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
         <div className="h-px bg-[var(--color-border)] my-7" />
 
         <div className="space-y-6">
+          {/* Show selected blockers */}
+          {content.blockersList && selectedBlockers.size > 0 && (
+            <div>
+              <p className="text-sm font-medium text-[var(--color-text-primary)] mb-2">
+                Main blockers
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {Array.from(selectedBlockers).map((b) => (
+                  <span
+                    key={b}
+                    className="px-3 py-1.5 rounded-full text-sm bg-[var(--color-accent-tint)] border border-[var(--color-accent)] text-[var(--color-accent)]"
+                  >
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {prompts.map((prompt, i) => (
             <div key={i}>
               <p className="text-sm font-medium text-[var(--color-text-primary)] mb-2">
@@ -133,14 +178,23 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
       {content.blockersList && (
         <div className="mb-6">
           <div className="flex flex-wrap gap-2">
-            {content.blockersList.map((blocker, i) => (
-              <span
-                key={i}
-                className="px-3 py-1.5 rounded-full text-sm bg-[var(--color-card-inner)] border border-[var(--color-border)] text-[var(--color-text-secondary)]"
-              >
-                {blocker}
-              </span>
-            ))}
+            {content.blockersList.map((blocker, i) => {
+              const selected = selectedBlockers.has(blocker);
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => toggleBlocker(blocker)}
+                  className={`px-3 py-1.5 rounded-full text-sm border transition-all ${
+                    selected
+                      ? 'bg-[var(--color-accent-tint)] border-[var(--color-accent)] text-[var(--color-accent)] font-medium'
+                      : 'bg-[var(--color-card-inner)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]'
+                  }`}
+                >
+                  {blocker}
+                </button>
+              );
+            })}
           </div>
           {content.blockersNote && (
             <p className="mt-4 text-sm text-[var(--color-text-muted)]">
@@ -150,7 +204,7 @@ export function ReflectionStep({ day, title, onBack, backLabel, onSave, onContin
         </div>
       )}
 
-      {!content.intro && (
+      {!content.intro && !content.blockersList && (
         <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] mb-8">
           Take a few minutes to reflect on what you just experienced. There are no right
           answers — just notice what's true for you.
