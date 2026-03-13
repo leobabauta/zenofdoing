@@ -243,8 +243,14 @@ export function PracticeStep({ day, title, hasAudio, onBack, backLabel, onContin
 
       {hasAudio && (
         <div className="mb-6 p-4 rounded-xl bg-[var(--color-card-inner)] border border-[var(--color-border)]">
-          <p className="text-sm text-[var(--color-text-muted)] mb-2">Audio guide</p>
-          <p className="text-sm text-[var(--color-text-secondary)] italic">Coming soon — audio will be available here.</p>
+          <p className="text-sm text-[var(--color-text-muted)] mb-2">Guided practice</p>
+          <audio
+            controls
+            className="w-full"
+            src={`https://qdvvwvnvwwaoguimkgbi.supabase.co/storage/v1/object/public/audio/day${day}-practice.m4a`}
+          >
+            Your browser does not support the audio element.
+          </audio>
         </div>
       )}
 
