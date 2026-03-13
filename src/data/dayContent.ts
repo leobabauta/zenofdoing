@@ -114,33 +114,52 @@ export const day2Lesson: LessonContent = {
   subtitle: 'Day 2 · Lesson',
   title: 'The Experience of Ease',
   paragraphs: [
-    'Placeholder: This lesson will explore what ease actually feels like as a lived experience — relaxation in the body, natural breath, a sense of flow and openness.',
-    'Content coming soon.',
+    "We've looked at what blocks ease. Now let's turn towards ease itself — not as an idea, but as something you can actually feel.",
+    "Ease isn't abstract — it's an experience. It's something we have all experienced … if you've ever been swaying peacefully in a hammock, floating in the water feeling blissfully relaxed, soaking in a tub, that's the experience of ease. We've had it while doing tasks as well, lost in flow.",
+    "Let's describe ease, as an experience. You might feel:",
+    {
+      type: 'list',
+      items: [
+        "**Relaxed** — not limp or dull, but free of excess tension",
+        "**Open** — like your mind is open to the present moment experience, and you feel spaciousness",
+        "**Flow** — you can just get lost in what you're doing, without forcing yourself",
+        "**Present** — fully here in the moment, rather than thinking about the past or future",
+        "**Pleasant** — there can often be a feeling of enjoying what you're doing, even savoring",
+        "**In your body** — fully in the sensations of what you're experiencing, rather than in your head",
+      ],
+    },
+    "That's the experience we're training ourselves in.",
+    "One thing we can do is remember a time when we felt ease. Let ourselves feel what it felt like in that memory. And think of that as an \"anchor experience\" — a reference you can return back to, whenever you want, no matter what you're doing.",
+    "In this way, we're not forcing ease, but remembering it. And coming back to it.",
+    "Let's create an anchor experience, in today's practice.",
   ],
 };
 
 export const day2PracticeInstructions: PracticeInstructionsContent = {
   title: 'Visualize Ease',
-  intro: 'Today\'s practice is a guided visualization. You\'ll close your eyes and imagine yourself doing a familiar task with complete ease.',
+  intro: "For this practice, you'll get 3 minutes to visualize an experience of ease that felt really good to you.",
   steps: [
-    'Find a comfortable position and close your eyes.',
-    'Press play on the audio guide below.',
-    'Follow along with the guided visualization.',
-    'When the practice ends, move on to the reflection.',
+    "Try to remember a time when you were able to feel at ease — you felt at peace with the world, you felt open and present, you felt relaxed and pleasant.",
+    "It could be a time when you felt at home, or maybe you were relaxed on the beach, or floating in the water.",
+    "As you visualize, try to also feel the feeling in your body. Notice what that feels like.",
+    "This experience, of feeling it in your body and visualizing ease, will be your anchor experience to come back to in future practices.",
   ],
+  closingNote: "OK, let's give it a shot!",
 };
 
 export const day2Reflection: ReflectionContent = {
   prompts: [
-    'What did ease feel like in your visualization? What did you notice in your body?',
-    'Was it easy or hard to imagine yourself doing things with ease? What came up?',
-    'What\'s one thing you could do today with a little more ease?',
+    'Were you able to visualize an experience of ease? (rate 1-5: 1 for not at all, 5 for a vivid visualization)',
+    'Were you able to feel the ease in your body? (rate 1-5: 1 for not at all, 5 for absolutely)',
+    'What did you notice about the practice?',
+    'What did your scene look like?',
+    'Do you have any questions or difficulties around this practice?',
   ],
 };
 
 export const day2Encouragement: EncouragementContent = {
   title: 'Practice During the Day',
-  message: 'You\'ve started to feel what ease is like. Now try bringing that feeling into one small thing today — making coffee, walking, or replying to a message. See if you can do it with the same quality of ease you just visualized.',
+  message: "For the rest of the day, until you come back here tomorrow, I encourage you to try to come back to this visualization and bodily experience of ease, whenever you remember. Not all day long, but from time to time.\n\nExplore it and see what you can notice. The more you practice, the more this can feel like a home to return to.",
 };
 
 // ─── Day 3 ───────────────────────────────────────────────

@@ -72,9 +72,11 @@ export function EncouragementStep({ day, onBack, backLabel, onContinue }: Encour
       </h1>
       <div className="h-px bg-[var(--color-border)] my-7" />
 
-      <p className="text-[15px] leading-relaxed text-[var(--color-text-secondary)]">
-        {content.message}
-      </p>
+      {content.message.split('\n\n').map((para, i) => (
+        <p key={i} className="text-[15px] leading-relaxed text-[var(--color-text-secondary)] mb-4">
+          {para}
+        </p>
+      ))}
 
       {/* Daily reminder — Day 1 only */}
       {day === 1 && supabase && user && reminderLoaded && (
