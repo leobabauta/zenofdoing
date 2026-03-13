@@ -69,3 +69,42 @@ export async function saveJournalEntry(
     reflections: entry.reflections,
   });
 }
+
+export async function loadReminder(userId: string): Promise<{
+  reminderHour: number;
+  timezone: string;
+  enabled: boolean;
+} | null> {
+  if (!supabase) return null;
+
+  const { data } = await supabase
+    .from('daily_reminders')
+    .select('reminder_hour, timezone, enabled')
+    .eq('user_id', userId)
+    .single();
+
+  if (!data) return null;
+
+  return {
+    reminderHour: data.reminder_hour as number,
+    timezone: data.timezone as string,
+    enabled: data.enabled as boolean,
+  };
+}
+
+export async function saveReminder(
+  userId: string,
+  reminderHour: number,
+  timezone: string,
+  enabled: boolean
+): Promise<void> {
+  if (!supabase) return;
+
+  await supabase.from('daily_reminders').upsert({
+    user_id: userId,
+    reminder_hour: reminderHour,
+    timezone,
+    enabled,
+    updated_at: new Date().toISOString(),
+  });
+}
