@@ -54,6 +54,16 @@ function generateConfetti(count: number): ConfettiParticle[] {
   }));
 }
 
+// Per-day practice config: default minutes and idle prompt
+const DAY_PRACTICE_CONFIG: Record<number, { minutes: number; idleText: string }> = {
+  2: {
+    minutes: 6,
+    idleText: 'Please find a place where you can practice for 6 minutes in relative quiet, start the timer, and play the audio guided visualization above.',
+  },
+};
+
+const DEFAULT_IDLE_TEXT = 'Choose a task, set your duration, and practice doing it with ease. Drag the hand or click the time to adjust.';
+
 interface PracticeStepProps {
   day: number;
   title: string;
@@ -64,11 +74,13 @@ interface PracticeStepProps {
 }
 
 export function PracticeStep({ day, title, hasAudio, onBack, backLabel, onContinue }: PracticeStepProps) {
-  const [totalSeconds, setTotalSeconds] = useState(1500);
-  const [remainingSeconds, setRemainingSeconds] = useState(1500);
+  const config = DAY_PRACTICE_CONFIG[day];
+  const defaultSeconds = (config?.minutes ?? 25) * 60;
+  const [totalSeconds, setTotalSeconds] = useState(defaultSeconds);
+  const [remainingSeconds, setRemainingSeconds] = useState(defaultSeconds);
   const [status, setStatus] = useState<TimerStatus>('idle');
   const [editingTime, setEditingTime] = useState(false);
-  const [editValue, setEditValue] = useState('25');
+  const [editValue, setEditValue] = useState(String(config?.minutes ?? 25));
   const [showCelebration, setShowCelebration] = useState(false);
   const [confettiParticles] = useState(() => generateConfetti(40));
   const editInputRef = useRef<HTMLInputElement>(null);
@@ -311,8 +323,7 @@ export function PracticeStep({ day, title, hasAudio, onBack, backLabel, onContin
         <div className="flex flex-col items-center py-6 gap-5">
           {status === 'idle' && (
             <p className="text-sm text-[var(--color-text-secondary)] text-center max-w-sm">
-              Choose a task, set your duration, and practice doing it with ease.
-              Drag the hand or click the time to adjust.
+              {config?.idleText ?? DEFAULT_IDLE_TEXT}
             </p>
           )}
           {status === 'running' && (
