@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase';
-import { LotusIllustration } from '../ui/Illustrations';
+import { DayIllustration } from '../ui/Illustrations';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -34,7 +34,7 @@ export function LoginPage() {
     <div className="min-h-screen flex justify-center px-4 py-10">
       <div className="w-full max-w-[640px] bg-[var(--color-card)] rounded-3xl shadow-xl shadow-black/8 overflow-hidden flex flex-col">
         <div className="px-10 pt-12 pb-4">
-          <LotusIllustration className="w-full mb-6" />
+          <DayIllustration day={1} className="w-full mb-6 rounded-xl" />
 
           <h1 className="text-2xl font-bold text-[var(--color-text-primary)] tracking-tight text-center">
             Zen of Doing

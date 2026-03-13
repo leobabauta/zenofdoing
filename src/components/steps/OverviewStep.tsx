@@ -1,6 +1,6 @@
 import { BackButton } from '../../App';
 import { day1Overview } from '../../data/dayContent';
-import { LotusIllustration } from '../ui/Illustrations';
+import { DayIllustration } from '../ui/Illustrations';
 import { renderRichText } from '../../lib/renderRichText';
 import { CompletionCheckbox } from '../ui/CompletionCheckbox';
 
@@ -19,7 +19,7 @@ export function OverviewStep({ onBack, backLabel, onComplete, onContinue }: Over
       <BackButton onClick={onBack} label={backLabel} />
 
       <div className="flex justify-center mb-6">
-        <LotusIllustration className="w-48" />
+        <DayIllustration day={1} className="w-48 rounded-xl" />
       </div>
 
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">

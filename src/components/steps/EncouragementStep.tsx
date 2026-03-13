@@ -1,6 +1,6 @@
 import { BackButton } from '../../App';
 import { getEncouragementContent } from '../../data/dayContent';
-import { MountainIllustration } from '../ui/Illustrations';
+import { DayIllustration } from '../ui/Illustrations';
 
 interface EncouragementStepProps {
   day: number;
@@ -17,7 +17,7 @@ export function EncouragementStep({ day, onBack, backLabel, onContinue }: Encour
       <BackButton onClick={onBack} label={backLabel} />
 
       <div className="flex justify-center mb-6">
-        <MountainIllustration className="w-48" />
+        <DayIllustration day={day} className="w-48 rounded-xl" />
       </div>
 
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">

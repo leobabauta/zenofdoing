@@ -1,6 +1,6 @@
 import { BackButton } from '../../App';
 import { day6FinalEncouragement } from '../../data/dayContent';
-import { LotusIllustration } from '../ui/Illustrations';
+import { DayIllustration } from '../ui/Illustrations';
 
 interface FinalEncouragementStepProps {
   onBack: () => void;
@@ -16,7 +16,7 @@ export function FinalEncouragementStep({ onBack, backLabel, onContinue }: FinalE
       <BackButton onClick={onBack} label={backLabel} />
 
       <div className="flex justify-center mb-6">
-        <LotusIllustration className="w-48" />
+        <DayIllustration day={6} className="w-48 rounded-xl" />
       </div>
 
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-3">

@@ -1,4 +1,4 @@
-import { HomeIllustration } from '../ui/Illustrations';
+import { DayIllustration } from '../ui/Illustrations';
 import { COURSE, getDayDef } from '../../data/courseDefinition';
 import { getDayProgress, getFirstIncompleteStep, isDayComplete } from '../../lib/courseProgress';
 
@@ -45,7 +45,7 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
           className="w-full text-left rounded-2xl overflow-hidden bg-[var(--color-card-inner)] border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors group"
         >
           <div className="overflow-hidden rounded-t-2xl">
-            <HomeIllustration className="w-full" />
+            <DayIllustration day={currentDay} className="w-full" />
           </div>
           <div className="px-5 py-4">
             <p className="text-[10px] font-semibold uppercase tracking-widest text-[var(--color-text-muted)] mb-1">
