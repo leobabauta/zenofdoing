@@ -150,7 +150,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex justify-center px-4 py-10">
-      <div className="w-full max-w-[640px] bg-[var(--color-card)] rounded-3xl shadow-[0_4px_6px_rgba(0,0,0,0.07),0_20px_50px_rgba(0,0,0,0.12),0_0_40px_rgba(139,106,174,0.2)] overflow-hidden flex flex-col">
+      <div className="w-full max-w-[640px] bg-[var(--color-card)] rounded-3xl shadow-[0_4px_6px_rgba(0,0,0,0.07),0_20px_50px_rgba(0,0,0,0.12),0_0_40px_rgba(218,180,100,0.25)] overflow-hidden flex flex-col">
         <div className="flex-1 flex flex-col" style={{ minHeight: 'calc(100vh - 80px)' }}>
           {view === 'main' && (
             <MainApp
