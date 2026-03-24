@@ -216,7 +216,7 @@ export const day3Reflection: ReflectionContent = {
 
 export const day3Encouragement: EncouragementContent = {
   title: 'Practice During the Day',
-  message: 'You just did something with ease. Try it again today with another task — anything at all. The more you practice, the more natural it becomes. Tomorrow, we\'ll raise the bar a little.',
+  message: 'For the rest of the day, until you come back here tomorrow, I encourage you to try to come back to this practice of ease while doing, whenever you remember. Not all day long, but whenever you can.\n\nExplore it and see what you can notice. The more you practice, the more you\'ll have access to ease while doing.',
 };
 
 // ─── Day 4 ───────────────────────────────────────────────
