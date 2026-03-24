@@ -81,9 +81,19 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
             const complete = isDayComplete(d.day, completedSteps);
             const isCurrent = d.day === currentDay;
             return (
-              <div
+              <button
                 key={d.day}
+                onClick={() => {
+                  if (available) {
+                    const step = getFirstIncompleteStep(d.day, completedSteps);
+                    const dayDef = getDayDef(d.day);
+                    if (step) onNavigateToStep(step);
+                    else if (dayDef) onNavigateToStep(dayDef.steps[0].id);
+                  }
+                }}
                 className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all ${
+                  available ? 'cursor-pointer' : 'cursor-default'
+                } ${
                   complete
                     ? 'bg-amber-100 border-2 border-amber-400'
                     : isCurrent
@@ -101,7 +111,7 @@ export function HomeScreen({ currentDay, availableDays, completedSteps, onNaviga
                 ) : (
                   d.day
                 )}
-              </div>
+              </button>
             );
           })}
         </div>
