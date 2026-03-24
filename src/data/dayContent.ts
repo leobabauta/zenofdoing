@@ -264,14 +264,15 @@ export const day4Lesson: LessonContent = {
 };
 
 export const day4PracticeInstructions: PracticeInstructionsContent = {
-  title: 'Do Something Harder, with Ease',
-  intro: 'Today you\'ll choose something a little more challenging and bring ease to it.',
+  title: 'Do Something with Ease',
+  intro: 'For today\'s practice, I encourage you to pick an easy task to work on again … but perhaps with just a little more challenge to it. Just a tinge.\n\nHere\'s how to practice:',
   steps: [
-    'Choose a task you\'ve been putting off or one that feels a bit harder.',
-    'Take a moment to notice any resistance before you begin.',
-    'Press play on the audio guide, then start the task.',
-    'When difficulty arises, meet it with softness rather than force.',
+    'Take one breath.',
+    'Recall the experience of ease for a moment.',
+    'Start with the smallest step on the task you\'ve chosen.',
+    'Notice when you fall out of ease, and come back to it.',
   ],
+  closingNote: 'And see what that\'s like.',
 };
 
 export const day4Reflection: ReflectionContent = {
