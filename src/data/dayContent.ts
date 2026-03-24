@@ -333,10 +333,15 @@ export const day5PracticeInstructions: PracticeInstructionsContent = {
 
 export const day5Reflection: ReflectionContent = {
   prompts: [
-    'What did you practice with today? How has your experience of ease changed since Day 1?',
-    'What subtle moments of tension did you catch that you might have missed before?',
-    'What does "doing with ease" mean to you now, after 5 days of practice?',
+    { text: 'How challenging did the situation feel that you visualized?', type: 'stars' },
+    { text: 'How much were you able to access ease?', type: 'stars' },
+    'What did you notice about ease in this challenging situation?',
   ],
+};
+
+export const day5Encouragement: EncouragementContent = {
+  title: 'Practice During the Day',
+  message: 'Sit with this question:\n\nWhere in my life am I adding weight that doesn\'t need to be there?\n\nJust get curious.\n\nAnd then, when you\'re ready: put it down. Just for this moment. Just this once.\n\nThat\'s the whole practice.',
 };
 
 // ─── Day 6 ───────────────────────────────────────────────
@@ -406,6 +411,7 @@ export function getEncouragementContent(day: number): EncouragementContent {
     2: day2Encouragement,
     3: day3Encouragement,
     4: day4Encouragement,
+    5: day5Encouragement,
   };
   return map[day];
 }
