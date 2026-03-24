@@ -277,9 +277,10 @@ export const day4PracticeInstructions: PracticeInstructionsContent = {
 
 export const day4Reflection: ReflectionContent = {
   prompts: [
-    'What harder task did you choose? What was it like to approach it with ease?',
-    'What resistance came up? How did you work with it?',
-    'What did you learn about the relationship between difficulty and ease?',
+    { text: 'How much were you able to access ease?', type: 'stars' },
+    { text: 'How much were you able to return to ease?', type: 'stars' },
+    'What did you notice about ease when you started doing the task?',
+    'What did you notice about getting pulled away, and coming back to ease?',
   ],
 };
 
