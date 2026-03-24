@@ -208,9 +208,9 @@ export const day3PracticeInstructions: PracticeInstructionsContent = {
 
 export const day3Reflection: ReflectionContent = {
   prompts: [
-    'What task did you choose? How did it feel to do it with ease?',
-    'When did you notice yourself leaving ease? What brought you back?',
-    'How was this different from how you normally do things?',
+    { text: 'How much were you able to access ease?', type: 'stars' },
+    'What did you notice about ease when you started doing the task?',
+    'Reflect on bringing ease into the experience of doing.',
   ],
 };
 
