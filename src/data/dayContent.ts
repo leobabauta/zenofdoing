@@ -376,10 +376,11 @@ export const day6Lesson: LessonContent = {
 export const day6Evaluate: EvaluateContent = {
   title: 'Evaluate Your Practice',
   prompts: [
-    'Looking back at the past 5 days, what has shifted in how you approach doing things?',
-    'Which day\'s practice was most impactful for you? Why?',
-    'What patterns or blockers are you now more aware of?',
-    'How will you continue practicing doing with ease going forward?',
+    'Which practice landed most deeply for you? What did it open up?',
+    'Was there a moment this week where you genuinely felt ease — even briefly? What was happening?',
+    'Where did ease feel most difficult to access this week? At work? In relationships? With yourself?',
+    'What\'s the one thing from this week that you want to remember?',
+    'Is there a single practice — a breath, a pause, a moment of naming — that actually helped?',
   ],
 };
 
