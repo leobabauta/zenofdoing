@@ -293,10 +293,30 @@ export const day4Encouragement: EncouragementContent = {
 
 export const day5Lesson: LessonContent = {
   subtitle: 'Day 5 · Lesson',
-  title: 'Challenges with Ease',
+  title: 'Ease Meets Real Life',
   paragraphs: [
-    'Placeholder: This lesson explores how to bring ease to challenges, frustrations, and the unexpected — the hardest test of this practice.',
-    'Content coming soon.',
+    'You\'ve spent four days practicing with ease. You\'ve felt it, brought it into action, learned to return to it.',
+    'There\'s probably a part of you that\'s thinking: this is beautiful, but what about when things get really hard?',
+    'That\'s exactly the right question. The challenges are real.',
+    'Ease isn\'t an approach that works only in calm conditions. We have to learn to access it under pressure.',
+    'So let\'s name the real challenges:',
+    {
+      type: 'list',
+      items: [
+        '**High-stakes moments.** A difficult conversation. A deadline. Something that really matters. The nervous system goes into alert, and ease feels like a luxury you can\'t afford.',
+        '**Grief, frustration, or pain.** Sometimes life is just hard. Forcing ease over real emotion feels dishonest — even toxic.',
+        '**Chronic overwhelm.** When the list never gets shorter, when rest never fully arrives — ease can start to feel like something for other people.',
+        '**The voice that says you don\'t deserve it.** That you haven\'t earned rest yet. That ease is laziness in disguise.',
+      ],
+    },
+    'These are real challenges to work with.',
+    'Let\'s start with a framing: Ease is not the absence of challenge. Ease is a new relationship with what\'s happening — one where you\'re not adding unnecessary resistance on top of what\'s already difficult.',
+    'The bracing, the self-attack, the tightening, the catastrophizing — that\'s the extra weight. That\'s what ease can actually help with.',
+    'Sometimes the most honest thing is to say: this is genuinely hard, and I\'m struggling, and I\'m going to let that be true.',
+    '**How Ease Becomes a Way of Being**',
+    'The practices this week — the pause, the breath, the experience of ease, the return — they\'re practice for these challenging situations.',
+    'What they\'re building underneath is something lasting: a basic trust that you can meet what comes without bracing for it. That you have access to something steady inside you, even when things outside are not.',
+    'That\'s something you keep choosing. And every time you return to ease, you\'re proving to yourself that it\'s possible.',
   ],
 };
 
