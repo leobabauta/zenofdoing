@@ -223,10 +223,43 @@ export const day3Encouragement: EncouragementContent = {
 
 export const day4Lesson: LessonContent = {
   subtitle: 'Day 4 · Lesson',
-  title: 'Doing with Ease',
+  title: 'Coming Back to Ease',
   paragraphs: [
-    'Placeholder: This lesson explores bringing ease to harder tasks — the ones where resistance is stronger and the pull to rush or avoid is greater.',
-    'Content coming soon.',
+    'Yesterday you started to practice bringing ease into action. But something happened that took you out of ease — maybe an interruption, a frustrating email, a moment of self-doubt …',
+    'The ease slipped away.',
+    'That\'s not failure. That\'s a part of the practice.',
+    '**Ease Isn\'t a State You Maintain — It\'s One You Return To**',
+    'This is the shift that changes everything about how you relate to ease.',
+    'We tend to think of it as something to hold onto — and the moment we lose it, we\'ve failed somehow. So we either strain to keep it (which kills it) or we give up on it entirely once it\'s gone.',
+    'But ease is less like a flame you have to protect, and more like a breath. You don\'t breathe once and hold it forever. You breathe out, and then you breathe in again.',
+    'The practice isn\'t staying in ease. It\'s returning to it.',
+    '**What Pulls Us Out**',
+    'It helps to recognize the common culprits — the moments that reliably knock us out of ease:',
+    {
+      type: 'list',
+      items: [
+        '**Resistance to what\'s happening.** Something doesn\'t go as planned, and we brace against it.',
+        '**The rushing mind.** We get pulled into what\'s next, what\'s wrong, what\'s missing — and we leave the present moment entirely.',
+        '**Self-criticism.** A mistake happens, and suddenly we\'re in a small war with ourselves.',
+        '**Overwhelm.** Too many things at once, and the nervous system contracts.',
+      ],
+    },
+    'None of these are bad. They\'re just signals. They\'re telling you: I\'ve left ease. I can come back.',
+    '**The Return**',
+    'Coming back doesn\'t require starting over. It doesn\'t require a long meditation or a perfect moment of stillness.',
+    'It just requires noticing, and one small movement toward ease.',
+    'Try this whenever you notice you\'ve left:',
+    {
+      type: 'list',
+      items: [
+        '**Name it quietly.** "I\'m not at ease right now." Just naming it creates a little space.',
+        '**One breath.** Let the exhale be longer than the inhale. Something in the body softens.',
+        '**Drop the story, just for now.** Whatever the mind is spinning — the worry, the frustration, the to-do list — you don\'t have to solve it in this moment. Just set it down briefly.',
+        '**Re-enter the present action.** What\'s the one thing in front of you right now? Just that.',
+      ],
+    },
+    'That\'s it. Just a 10-second practice. You\'re back.',
+    'You\'ll leave many times, every day, and that\'s absolutely fine. What matters is that you practice returning, over and over again. You\'ll start to build confidence that you can find your way back. And the return becomes easier as you practice.',
   ],
 };
 
