@@ -172,10 +172,26 @@ export const day2Encouragement: EncouragementContent = {
 
 export const day3Lesson: LessonContent = {
   subtitle: 'Day 3 · Lesson',
-  title: 'Doing with Ease',
+  title: 'Bringing Ease into Action',
   paragraphs: [
-    'Placeholder: This lesson bridges visualization into action — actually doing a small task with ease, bringing the quality you practiced yesterday into real activity.',
-    'Content coming soon.',
+    'Yesterday, you explored the quality of ease, as an experience. This is always available to you, no matter what you\'re doing.',
+    'Today, we carry it forward, into action.',
+    'Having some moments of ease is one thing … but when we sit down to do a task, especially one that brings some resistance … the ease can disappear.',
+    'The trick is to approach the task differently. Instead of bracing ourselves, and tightening our bodies, and telling ourselves why a task is going to be hard, boring, uncomfortable or scary … we find a new approach.',
+    'Let\'s look at how you begin.',
+    'As you start a task today, try this:',
+    {
+      type: 'list',
+      items: [
+        '**Pause for just a breath.** The shortest of rituals: just one conscious breath. Let your shoulders drop and relax.',
+        '**Recall the experience of ease from yesterday.** Not the visualization itself, just the feeling — open, relaxed, present.',
+        '**Start small and slow.** The first action doesn\'t need to be impressive. It just needs to be easy. One sentence. One item. One small step.',
+      ],
+    },
+    'Ease is contagious — when you start easy, the next thing is easier too.',
+    '**The Secret: Ease Isn\'t the Absence of Effort**',
+    'We\'re not talking about doing less (though that can happen) … or just coasting.',
+    'Ease is how you move through an action — like water finding its way downhill. Movement, without the fighting.',
   ],
 };
 
