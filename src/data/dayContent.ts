@@ -284,6 +284,11 @@ export const day4Reflection: ReflectionContent = {
   ],
 };
 
+export const day4Encouragement: EncouragementContent = {
+  title: 'Practice During the Day',
+  message: 'Set a soft intention: today, I\'ll notice when I\'ve left ease — and I\'ll come back at least once.\n\nJust once is enough. Notice the leaving. Try the return. See what you find.',
+};
+
 // ─── Day 5 ───────────────────────────────────────────────
 
 export const day5Lesson: LessonContent = {
@@ -380,6 +385,7 @@ export function getEncouragementContent(day: number): EncouragementContent {
     1: day1Encouragement,
     2: day2Encouragement,
     3: day3Encouragement,
+    4: day4Encouragement,
   };
   return map[day];
 }

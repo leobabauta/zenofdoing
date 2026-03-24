@@ -60,8 +60,9 @@ export const COURSE: DayDef[] = [
     steps: [
       { id: 'day4.lesson', type: 'lesson', label: 'Doing with Ease' },
       { id: 'day4.practice-instructions', type: 'practice-instructions', label: 'Practice Instructions' },
-      { id: 'day4.practice', type: 'practice', label: 'Do Something Harder, with Ease', hasAudio: true },
+      { id: 'day4.practice', type: 'practice', label: 'Do Something with Ease', hasAudio: true },
       { id: 'day4.reflection', type: 'reflection', label: 'Reflection' },
+      { id: 'day4.encouragement', type: 'encouragement', label: 'Practice During the Day' },
     ],
   },
   {
