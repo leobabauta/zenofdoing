@@ -73,7 +73,7 @@ export function CompletionCheckbox({ completed: initialCompleted, onComplete, co
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </button>
-          {done && (
+          {done && !autoContinue && (
             <button
               onClick={onContinue}
               className="flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
