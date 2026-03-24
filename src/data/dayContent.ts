@@ -321,13 +321,13 @@ export const day5Lesson: LessonContent = {
 };
 
 export const day5PracticeInstructions: PracticeInstructionsContent = {
-  title: 'More Practice Doing with Ease',
-  intro: 'Today is about deepening your practice. You\'ll do another task with ease, this time with more awareness of the subtle moments where ease slips away.',
+  title: 'Ease Meets Challenge',
+  intro: 'For today\'s practice, you\'ll visualize a challenging situation that\'s happening in your life.',
   steps: [
-    'Choose any task — easy or hard, it doesn\'t matter.',
-    'Set your intention: ease, presence, openness.',
-    'Press play on the audio guide and begin.',
-    'Pay special attention to the transitions — starting, getting stuck, finishing.',
+    'Recall how it feels — any frustrations, anger, grief, self-doubt, feeling of stuckness, anxiety or fear. Let yourself feel the experience of challenge for a few moments.',
+    'Then practice bringing some ease into the situation. A few deeper breaths. Some relaxing. A little more spaciousness.',
+    'See if you can drop some of the "extra" — the thoughts about how this shouldn\'t be this way, the bracing and trying to get away from it.',
+    'And just be with the experience, with ease.',
   ],
 };
 
