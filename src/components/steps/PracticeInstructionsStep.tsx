@@ -49,7 +49,7 @@ export function PracticeInstructionsStep({ day, onBack, backLabel, onComplete, o
       )}
 
       <div className="mt-10">
-        <CompletionCheckbox completed={false} onComplete={onComplete} continueLabel="Continue" onContinue={onContinue} />
+        <CompletionCheckbox completed={false} onComplete={onComplete} continueLabel="Continue" onContinue={onContinue} buttonLabel="Let's practice" autoContinue />
       </div>
     </div>
   );

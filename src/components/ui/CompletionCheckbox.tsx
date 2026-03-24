@@ -16,9 +16,11 @@ interface CompletionCheckboxProps {
   onComplete: () => void;
   continueLabel: string;
   onContinue: () => void;
+  buttonLabel?: string;
+  autoContinue?: boolean;
 }
 
-export function CompletionCheckbox({ completed: initialCompleted, onComplete, continueLabel, onContinue }: CompletionCheckboxProps) {
+export function CompletionCheckbox({ completed: initialCompleted, onComplete, continueLabel, onContinue, buttonLabel, autoContinue }: CompletionCheckboxProps) {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [origin, setOrigin] = useState({ x: 0, y: 0 });
   const [pendingCheck, setPendingCheck] = useState(false);
@@ -53,6 +55,9 @@ export function CompletionCheckbox({ completed: initialCompleted, onComplete, co
     setTimeout(() => {
       setPendingCheck(false);
       setDone(true);
+      if (autoContinue) {
+        setTimeout(onContinue, 1000);
+      }
     }, 1500);
   };
 
@@ -118,7 +123,7 @@ export function CompletionCheckbox({ completed: initialCompleted, onComplete, co
       onClick={handleMarkComplete}
       className="rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
     >
-      Mark as complete
+      {buttonLabel || 'Mark as complete'}
     </button>
   );
 }
