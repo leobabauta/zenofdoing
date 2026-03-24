@@ -7,7 +7,12 @@ import { COURSE, parseStepId, getNextStep } from '../data/courseDefinition';
  *   1. Day N-1 is fully complete
  *   2. At least N-1 calendar days have passed since course start (i.e. midnight boundary)
  */
+// TODO: Remove this flag and restore gating before launching to users
+const UNLOCK_ALL_DAYS = true;
+
 export function getAvailableDays(courseStartedAt: string, completedSteps: Set<string>): number {
+  if (UNLOCK_ALL_DAYS) return 6;
+
   const start = new Date(courseStartedAt);
   const now = new Date();
 
