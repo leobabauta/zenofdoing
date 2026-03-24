@@ -197,12 +197,12 @@ export const day3Lesson: LessonContent = {
 
 export const day3PracticeInstructions: PracticeInstructionsContent = {
   title: 'Do Something Small, with Ease',
-  intro: 'Today you\'ll pick a small, simple task and do it with ease. This is where the practice becomes real.',
+  intro: 'Pick one task you\'ve been avoiding or approaching with dread. You\'re going to work on it just a little.',
   steps: [
-    'Choose a small task — something that takes 5-15 minutes.',
-    'Before you begin, take a breath and set an intention for ease.',
-    'Press play on the audio guide, then begin your task.',
-    'When you notice tension, pause, soften, and return to ease.',
+    'Take one breath.',
+    'Recall that feeling of ease for a moment.',
+    'Start with the smallest, most frictionless version of beginning the task.',
+    'Notice what happens. Not just to the task — but to your experience of doing. Get curious about that as you practice doing while connecting to your experience of ease. Just for a few minutes.',
   ],
 };
 
