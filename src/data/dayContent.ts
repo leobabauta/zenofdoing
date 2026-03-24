@@ -350,8 +350,26 @@ export const day6Lesson: LessonContent = {
   subtitle: 'Day 6 · Lesson',
   title: 'Evaluate & Adjust',
   paragraphs: [
-    'Placeholder: This final lesson is about stepping back to see the bigger picture — what you\'ve learned, what\'s changed, and how to carry this practice forward.',
-    'Content coming soon.',
+    'You made it to the end of the training.',
+    'Before you move on, let\'s pause here for a moment.',
+    'It\'s important that we take a little time to reflect and evaluate what we\'ve been learning from practicing. Without reflection, experience just washes over us.',
+    'Reflection is what turns raw experience into insight. And with a practice like ease, it matters a lot.',
+    'So don\'t skip this part. The few minutes you spend looking back honestly are not a detour from the practice — they are the practice, completing its full cycle.',
+    '**Experience → Reflection → Insight → Adjusting the Practice.**',
+    '**Adjusting the Practice**',
+    'No practice survives contact with real life completely intact. We adjust by noticing what got in the way, what we learned, what was beautiful about the practice. And then we fit the practice to ourselves.',
+    'The question isn\'t did I do this perfectly? It\'s what version of this can I actually keep doing?',
+    '**What Continuing Looks Like**',
+    'Ease as a practice doesn\'t need to be elaborate. At its simplest, it\'s just three moments woven into your day:',
+    {
+      type: 'list',
+      items: [
+        '**Morning:** One breath before you begin. A quiet intention — I\'m available to ease today.',
+        '**During the day:** When you notice tension or resistance, one return. Name it, breathe, come back.',
+        '**Evening:** One question — where did I find ease today? Where did I leave it? Just noticing, no judgment.',
+      ],
+    },
+    'Small enough to actually do. Consistent enough to actually change something.',
   ],
 };
 
