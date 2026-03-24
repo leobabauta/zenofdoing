@@ -386,7 +386,7 @@ export const day6Evaluate: EvaluateContent = {
 
 export const day6FinalEncouragement: EncouragementContent = {
   title: 'Keep Practicing & Reflecting',
-  message: 'You\'ve completed the 6-day Zen of Doing challenge. But this is really just the beginning. The practice of doing with ease is something you can bring to everything you do, for the rest of your life. Keep noticing. Keep softening. Keep returning to ease. And whenever you need a refresher, come back and do the challenge again.',
+  message: 'Here\'s what I want you to know:\n\nThe fact that ease doesn\'t come naturally yet — that you have to remember it, return to it, practice it — that\'s not a sign that something is wrong.\n\nYou\'ve been swimming in the current of strain and struggle your whole life. Of course ease takes practice.\n\nBut you came here. You showed up for six days. You practiced something different.\n\nThat\'s not small.\n\nKeep practicing. Keep returning. Keep asking what it would feel like to do this — whatever this is — with a little more ease.\n\nYou already know the way back.',
 };
 
 // ─── Lookup helpers ──────────────────────────────────────
